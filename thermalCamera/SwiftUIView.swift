@@ -15,20 +15,27 @@ struct MyView: View {
             HStack {
             Button(action: {self.test.pencil.toggle()
                 if self.test.pencil {
-                    self.test.buttons["pencil"] = AnyView(Image(systemName: "pencil")
+                    self.test.buttons["pencil"] = AnyView(
+                        HStack {
+                        Button(action: {
+                            self.test.toggle_pencil_usage.toggle()
+                        }) {
+                            Image(systemName: "pencil")
                             .resizable()
                             .padding(6)
                             .frame(width: 40, height: 40)
-                            .background(Color.blue)
+                            .background(self.test.toggle_pencil_usage ? Color.blue : Color.white)
                             .clipShape(Circle())
-                            .foregroundColor(.white))
-                    print(self.test.buttons)
+                            .foregroundColor(.white)
+                        }
+                            ColorPicker("Set pencil Colour", selection: self.$test.pencil_colour)
+                            .frame(width: 150, height: 150, alignment: .center)
+                        })
                 } else {
                     if (self.test.buttons["pencil"] != nil) {
                         print(self.test.buttons)
                         self.test.buttons.removeValue(forKey: "pencil")
                     }
-                    //self.test.buttons.r
                 }
             }, label: {
                 if self.test.pencil == false {
@@ -48,8 +55,8 @@ struct MyView: View {
                     if self.test.capture_image {
                         self.test.buttons["camera"] = AnyView(Button(action: {
                             
-                            let image = body.snapshot()
-                            UIImageWriteToSavedPhotosAlbum(screenshot(), nil, nil, nil)
+                            _ = body.snapshot()
+                                UIImageWriteToSavedPhotosAlbum(screenshot(), nil, nil, nil)
                             })
                             {
                                 Image(systemName: "camera")
@@ -97,7 +104,6 @@ struct MyView: View {
             .cornerRadius(7.0)
             }
         })
-        //Text(String(self.test.temp_range))
     }
     
 }

@@ -4,11 +4,13 @@ import SwiftUI
 var points = [CGPoint]()
 
 struct imageVideo: UIViewControllerRepresentable {
-    
+
     @EnvironmentObject var added_items : modularised_ui
+
     func makeUIViewController(context: Context) -> UIViewController {
         // Set the ImageView to the stream object
-        VideoViewController()
+
+        return VideoViewController(added_items: added_items)
         
     }
     
@@ -20,12 +22,23 @@ struct imageVideo: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
 }
 
-
 class VideoViewController: UIViewController {
+    
     private var pointsArray = [CGPoint]()
     var circle_path = CircleView(frame: CGRect(x:0, y:0, width:400, height:300))
     let path = UIBezierPath()
+    var added_items : modularised_ui = modularised_ui()
     
+    init(added_items: modularised_ui) {
+           self.added_items = added_items
+           //super.init(coder: NSCoder)
+        super.init(nibName: nil, bundle: nil)
+
+       }
+       
+       required init?(coder: NSCoder) {
+           fatalError("init(coder:) has not been implemented")
+       }
     override func viewDidLoad() {
         
     super.viewDidLoad()
@@ -57,6 +70,7 @@ class VideoViewController: UIViewController {
         let touch = touches.first!
         _ = touch.location(in: self.view)
         circle_path = CircleView(frame: CGRect(x:0, y:0, width:400, height:300))
+        if ((self.added_items.toggle_pencil_usage)) {
         for touch in touches {
             
             print(touch.location(in: self.view))
@@ -80,11 +94,14 @@ class VideoViewController: UIViewController {
                 circle_path.removeFromSuperview()
                 circle_path.remove_list()
             }
+            circle_path.change_colour(col: self.added_items.pencil_colour)
                 view.addSubview(circle_path)
             
         }
+        }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if ((self.added_items.toggle_pencil_usage)) {
         for touch in touches {
             //print("Adding")
             var circleCenter = touch.location(in: view)
@@ -106,13 +123,15 @@ class VideoViewController: UIViewController {
             circle_path.setNeedsDisplay()
             
         }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("ended")
-
-       
+        
+        if ((self.added_items.toggle_pencil_usage)) {
         view.addSubview(circle_path)
+        }
         }
         
     
@@ -124,6 +143,7 @@ class VideoViewController: UIViewController {
 // Handle touch end
 class CircleView: UIView {
     //private var points = [CGPoint]()
+    var colour = Color.black
     var path = UIBezierPath()
     private var last_index = 0
     
@@ -136,6 +156,9 @@ class CircleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func change_colour (col : Color) {
+        self.colour = col
+    }
     func add_point(point: CGPoint) {
         points.append(point)
         print(point)
@@ -175,7 +198,8 @@ class CircleView: UIView {
            //path.close()
 
            //If you want to stroke it with a red color
-           UIColor.red.set()
+            //UIColor.red.set()
+            UIColor(self.colour).set() //self.colour.set()
             self.path.stroke()
            //If you want to fill it as well
            //path.fill()

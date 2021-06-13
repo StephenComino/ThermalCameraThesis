@@ -10,6 +10,8 @@ import SwiftUI
 class modularised_ui: ObservableObject {
     @Published var temp_range : Bool = false
     @Published var pencil : Bool = false
+    @Published var toggle_pencil_usage : Bool = true
+    @Published var pencil_colour : Color = Color.black
     @Published var view_objects : Bool = false
     @Published var capture_image : Bool = false
     @Published var zoom : Bool = false
