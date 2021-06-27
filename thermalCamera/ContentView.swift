@@ -7,6 +7,38 @@
 
 import SwiftUI
 
+
+// A struct to store exactly one restaurant's data.
+struct Temperature_object: Identifiable {
+    let id = UUID()
+    let name: String
+    let temp: Float
+    let top_range: Float
+    let low_range: Float
+    //var temp_range: [CGPoint]
+}
+class Thermal_Objects: Identifiable, ObservableObject {
+    @Published var id = UUID()
+    @Published var name: String = ""
+    @Published var temp_range: [CGPoint] = []
+    @Published var min_temp: Float = 0.0
+    @Published var max_temp: Float = 0.0
+    @Published var avg_temp: Float = 0.0
+    @Published var tapped: Bool = false
+}
+
+// A view that shows the data for one Restaurant.
+struct TemperatureRow: View {
+    @Binding var updater : Bool
+    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
+    var temp_item: Temperature_object
+
+    var body: some View {
+        //Rectangle().frame(width:25, height: 25, alignment: .center).background(Color.black)
+        Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n - Heighest: \(temp_item.top_range)\n Avg :: \(temp_item.temp)")
+    }
+}
+
 class modularised_ui: ObservableObject {
     @Published var temp_range : Bool = false
     @Published var pencil : Bool = false
@@ -15,76 +47,151 @@ class modularised_ui: ObservableObject {
     @Published var view_objects : Bool = false
     @Published var capture_image : Bool = false
     @Published var zoom : Bool = false
-    //@Published var items_added : int = 0
     @Published var buttons : [String: AnyView]  = [:]
+    //@ObservedObject private var therm_obj = Thermal_Objects()
+    @Published var thermal_objects : [Thermal_Objects] = []
+    @Published var tapped: Bool = false
     
 }
 struct ContentView: View {
     // Initialise the Struct to help us add Items to the UI Interface
-    
+   
     @ObservedObject var added_items = modularised_ui()
+    @State var updater: Bool = false
     var body: some View {
         // This is the Thermal Video Stream!!
         VStack(alignment: .leading) {
-            imageVideo().frame(width: 400, height:300, alignment: .top)
-                .border(Color.red, width: 2)
-                .environmentObject(self.added_items)
-                
-            Spacer()
-            NavigationView {
-                if self.added_items.buttons.count == 0 {
-                VStack(alignment: .center){
-                    Text("Add Items to interact with Video")
-                        NavigationLink(destination: MyView().environmentObject(self.added_items)) {
-                                ZStack {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .padding(6)
-                                        .frame(width: 24, height: 24)
-                                        .background(Color.blue)
-                                        .clipShape(Circle())
-                                        .foregroundColor(.white)
-                                        }
-                            }
-                        
-                        Spacer()
-                }
-                } else {
-                    VStack(alignment: .leading){
-                        NavigationLink(destination: MyView().environmentObject(self.added_items)) {
-                        ZStack {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .padding(6)
-                                .frame(width: 24, height: 24)
-                                .background(Color.blue)
-                                .clipShape(Circle())
-                                .foregroundColor(.white)
-                            
-                                }
-                        }
-                        ForEach(Array(self.added_items.buttons), id: \.key) { key, value in
-                            
-                        HStack(alignment: .center){
-                           value
-                        
-                        }
-                            Spacer()
-                        }
+            GeometryReader { geometry in
+                ZStack() {
+                    imageVideo().frame(width: geometry.size.width, height:300, alignment: .top)
+                        .border(Color.red, width: 2)
+                        .environmentObject(self.added_items)
+                    if (added_items.toggle_pencil_usage) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 20, height: 125, alignment: .center)
+                            .background(Color.clear)
+                            .overlay(
+                            LinearGradient(gradient: Gradient(colors: [.blue, .yellow, .red]), startPoint: .top, endPoint: .bottom))
+                            //.foregroundColor(Color.blue)
+                            .offset(x: 150)
                     }
                 }
-                Spacer()
-            // If not all UIs are added use the add button
-            // Toggle Drawing when the Pen Is clicked
-            // Ability to add and remove functionality,
-            // 1. Zoom
-            // 2. Temp Scale
-            // 3. Save
+            }
+        }
+        
+        // Middle part
+        GeometryReader { geometry in
             
+            VStack(alignment: .trailing, spacing: 10) {
+            HStack(alignment: .center, spacing: 10) {
+                Button(action: {
+                    _ = body.snapshot()
+                        UIImageWriteToSavedPhotosAlbum(screenshot(), nil, nil, nil)
+                    })
+                    {
+                        Image(systemName: "camera")
+                        //.resizable()
+                        //.padding(10)
+                            .frame(width: 50, height: 50)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .foregroundColor(.white)
+                    }
+            ColorPicker("Pen Color", selection: $added_items.pencil_colour)
+                .padding(10)
+                .frame(width: 150, height: 50)
+                .background(Color.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+              
+            }.frame(width: geometry.size.width, height: 65, alignment: .center)
+            // This button will toggle temperature readings on the screen
+            HStack(alignment: .center, spacing: 10) {
+                Button(action: {
+                    added_items.toggle_pencil_usage.toggle()
+                }) {
+                    Image(systemName: "thermometer")
+                        .resizable()
+                        .padding(10)
+                        .frame(width: 50, height: 50)
+                        .background(added_items.toggle_pencil_usage ? Color.blue : Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .foregroundColor(added_items.toggle_pencil_usage ? Color.white : Color.blue)
+                    }
+                Button(action: {
+                    // Do Reset
+                    let url = URL(string: "http://192.168.0.187/reset")!
+                    let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+                        guard let data = data else { return }
+                        print(String(data: data, encoding: .utf8)!)
+                    }
+                    task.resume()
+                    
+                }) {
+                    Image(systemName: "arrow.clockwise.circle.fill")
+                    .resizable()
+                    .padding(10)
+                    .frame(width: 50, height: 50)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .foregroundColor(.white)
+                
+                //ThermoView().environmentObject(added_items)
+                }
+            }.frame(width: geometry.size.width, height: 65, alignment: .center)
         }
-        }
-    }
+        }.offset(y:80)
+            // Bottom Part
+            GeometryReader { geometry in
+                VStack(spacing: 10) {
+                Text("Temperature Readings").fontWeight(.heavy)
+                    if (added_items.thermal_objects.count == 0) {
+                        Text("Please circle an area on the Thermal image").fontWeight(.medium).offset(x:20)
+                    } else {
+            HStack {
+               
+                List(added_items.thermal_objects) { key in
+                 
+                    Image.init(systemName: "minus.circle.fill").frame(width: 25, height: 25, alignment: .center)
+                        .background(Color.clear)
+                        .foregroundColor(Color.red).onTapGesture {
+                            if let idx = added_items.thermal_objects.firstIndex(where: { $0 === key }) {
+                                added_items.thermal_objects.remove(at: idx)
+                            }
+                        }
+                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp)).onTapGesture {
+                        //Highlight the area where selected.
+                        drawPathAgain(list: key.temp_range)
+                        //circle_path.addPoint(
+                        //let Circle_path = Path { path in
+                        //    var count = 0
+                        //    for index in key.temp_range {
+                       //         if (count == 0) {
+                        //            path.move(to: index)
+                       ///         } else {
+                        //            path.addLine(to: index)
+                        //
+                        //        }
+                        //        count += 1
+                        //    }
+                            
+                       // }
+                       // Circle_path.fill(Color.red)
+                        
+                    }
+                        
+                        .environmentObject(self.added_items)
+                }
+                }.frame(width: geometry.size.width, height: 200, alignment: .bottom)
+            }
+            //.frame(width: geometry.size.width, height: 200, alignment: .bottom)
+            }
+            }
+            }
 
+}
+
+func drawPathAgain(list:[CGPoint]) {
+    //imageVideo.
 }
 extension View {
     func snapshot() -> UIImage {
