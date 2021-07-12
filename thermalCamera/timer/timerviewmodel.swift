@@ -6,12 +6,7 @@
 //
 
 import Foundation
-struct therm_data: Codable {
-    var isError: Bool?
-    var message: String?
-    var statusCode: Int?
-    var data: [Float]?
-}
+
 class temp_timer {
     var added_items: modularised_ui   // just member
         

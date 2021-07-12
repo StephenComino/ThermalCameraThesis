@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-
-// A struct to store exactly one restaurant's data.
-struct Temperature_object: Identifiable {
-    let id = UUID()
-    let name: String
-    let temp: Float
-    let top_range: Float
-    let low_range: Float
-    //var temp_range: [CGPoint]
-}
-class Thermal_Objects: Identifiable, ObservableObject {
-    @Published var id = UUID()
-    @Published var name: String = ""
-    @Published var temp_range: [CGPoint] = []
-    @Published var min_temp: Float = 0.0
-    @Published var max_temp: Float = 0.0
-    @Published var avg_temp: Float = 0.0
-    @Published var tapped: Bool = false
-}
-
 // A view that shows the data for one Restaurant.
 struct TemperatureRow: View {
     @Binding var updater : Bool
@@ -38,7 +18,6 @@ struct TemperatureRow: View {
         Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n - Heighest: \(temp_item.top_range)\n Avg :: \(temp_item.temp)")
     }
 }
-
 class modularised_ui: ObservableObject {
     @Published var temp_range : Bool = false
     @Published var pencil : Bool = false
@@ -49,18 +28,28 @@ class modularised_ui: ObservableObject {
     @Published var zoom : Bool = false
     @Published var buttons : [String: AnyView]  = [:]
     //@ObservedObject private var therm_obj = Thermal_Objects()
+    @Published var values:[String] = ["Autumn", "Bone", "Jet", "Winter", "Rainbow", "Ocean", "Summer", "Spring", "Cool", "HSV", "Pink", "Hot", "Parula", "Magma", "Inferno", "Plasma", "Viridis", "Cividis", "Twilight", "Twilight Shifted", "Turbo"]
     @Published var thermal_objects : [Thermal_Objects] = []
     @Published var tapped: Bool = false
-    
+    @Published var current_view = -1
+    @Published var current_idx = 0
+    //@State var showTimeframeDropDown = true
 }
+    
 struct ContentView: View {
     // Initialise the Struct to help us add Items to the UI Interface
    
     @ObservedObject var added_items = modularised_ui()
     @State var updater: Bool = false
+    @State var show_video_changer: Bool = false
+    @State var showing_action_sheet: Bool = false
+    
+    
     var body: some View {
         // This is the Thermal Video Stream!!
+       // NavigationView {
         VStack(alignment: .leading) {
+            
             GeometryReader { geometry in
                 ZStack() {
                     imageVideo().frame(width: geometry.size.width, height:300, alignment: .top)
@@ -77,13 +66,17 @@ struct ContentView: View {
                     }
                 }
             }
-        }
+        //}.frame(height:300)
         
-        // Middle part
+        //NavigationView {
         GeometryReader { geometry in
+
+            VStack(alignment: .leading, spacing: 5) {
+        // Middle part
+        //GeometryReader { geometry in
             
-            VStack(alignment: .trailing, spacing: 10) {
-            HStack(alignment: .center, spacing: 10) {
+                //Form{
+                HStack(alignment: .top, spacing: 5) {
                 Button(action: {
                     _ = body.snapshot()
                         UIImageWriteToSavedPhotosAlbum(screenshot(), nil, nil, nil)
@@ -96,14 +89,19 @@ struct ContentView: View {
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(.white)
-                    }
+                }.frame(width:50, height: 50)
+                .zIndex(1)
+                    
             ColorPicker("Pen Color", selection: $added_items.pencil_colour)
                 .padding(10)
                 .frame(width: 150, height: 50)
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-              
-            }.frame(width: geometry.size.width, height: 65, alignment: .center)
+                .zIndex(1)
+                }
+                .frame(width: geometry.size.width, height: 50, alignment:.center)
+                //.offset(y:-95)
+                .zIndex(1)
             // This button will toggle temperature readings on the screen
             HStack(alignment: .center, spacing: 10) {
                 Button(action: {
@@ -116,7 +114,8 @@ struct ContentView: View {
                         .background(added_items.toggle_pencil_usage ? Color.blue : Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundColor(added_items.toggle_pencil_usage ? Color.white : Color.blue)
-                    }
+                    }.buttonStyle(PlainButtonStyle())
+                .frame(width:50, height: 50)
                 Button(action: {
                     // Do Reset
                     let url = URL(string: "http://192.168.0.187/reset")!
@@ -136,21 +135,42 @@ struct ContentView: View {
                     .foregroundColor(.white)
                 
                 //ThermoView().environmentObject(added_items)
-                }
-            }.frame(width: geometry.size.width, height: 65, alignment: .center)
-        }
-        }.offset(y:80)
-            // Bottom Part
-            GeometryReader { geometry in
-                VStack(spacing: 10) {
-                Text("Temperature Readings").fontWeight(.heavy)
-                    if (added_items.thermal_objects.count == 0) {
-                        Text("Please circle an area on the Thermal image").fontWeight(.medium).offset(x:20)
-                    } else {
-            HStack {
+                }.buttonStyle(PlainButtonStyle())
+                .frame(width:50, height: 50)
+                
+                Button(action: {self.show_video_changer.toggle()}) {
+                        Image(systemName: "display")
+                        .resizable()
+                        .padding(10)
+                        .frame(width: 50, height: 50)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .foregroundColor(.white)
+                }.sheet(isPresented: self.$show_video_changer,
+                        onDismiss: {self.show_video_changer = false },
+                        content: {
+                    DropDownButton().environmentObject(self.added_items)
+                    
+                }).frame(alignment: .center)
+                .frame(width:50, height: 50)
                
+            }//.offset(y:-90)
+            .frame(width: geometry.size.width, height: 50, alignment:.center)
+            //.frame(width: geometry.size.width, alignment:.center)//.frame(width: geometry.size.width, height:
+            
+        if (!self.show_video_changer) {
+                
+                VStack(spacing: 5){
+                //Text("Temperature Readings").fontWeight(.heavy).offset(y:-100)
+                    if (added_items.thermal_objects.count == 0) {
+                        Text("Temperature Readings").fontWeight(.heavy).offset(y:-100)
+                        Text("Please circle an area on the Thermal image").fontWeight(.medium).offset(y:-100)
+                    } else {
+                        Text("Temperature Readings").fontWeight(.heavy)
+            HStack {
+                //Text("Temperature Readings").fontWeight(.heavy).offset(y:-100)
                 List(added_items.thermal_objects) { key in
-                 
+                    let idx = added_items.thermal_objects.firstIndex(where: { $0 === key })
                     Image.init(systemName: "minus.circle.fill").frame(width: 25, height: 25, alignment: .center)
                         .background(Color.clear)
                         .foregroundColor(Color.red).onTapGesture {
@@ -158,38 +178,41 @@ struct ContentView: View {
                                 added_items.thermal_objects.remove(at: idx)
                             }
                         }
-                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp)).onTapGesture {
-                        //Highlight the area where selected.
-                        drawPathAgain(list: key.temp_range)
-                        //circle_path.addPoint(
-                        //let Circle_path = Path { path in
-                        //    var count = 0
-                        //    for index in key.temp_range {
-                       //         if (count == 0) {
-                        //            path.move(to: index)
-                       ///         } else {
-                        //            path.addLine(to: index)
-                        //
-                        //        }
-                        //        count += 1
-                        //    }
-                            
-                       // }
-                       // Circle_path.fill(Color.red)
-                        
+                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp))
+                        .background(added_items.thermal_objects[idx!].alert_max != "" && (Int(added_items.thermal_objects[idx!].alert_max)! < Int(added_items.thermal_objects[idx!].max_temp)) ? Color.red : Color.clear)
+                    
+                    Spacer()
+                    Button(action: {}) {
+                        Text("Alerts").foregroundColor(.black).font(.system(size: 11.0))
+                    }.frame(width: 35, height: 35, alignment: .center)
+                    .background(Color.red)
+                    .clipShape(Circle())
+                    .onTapGesture {
+                        self.showing_action_sheet.toggle()
+                        let idx = added_items.thermal_objects.firstIndex(where: { $0 === key })
+                        self.added_items.current_idx = idx!
                     }
+                    .sheet(isPresented: self.$showing_action_sheet,
+                            onDismiss: {self.showing_action_sheet = false },
+                            content: {
+                                setAlertView().environmentObject(self.added_items)
                         
-                        .environmentObject(self.added_items)
+                    }).frame(alignment: .center)
+                    
                 }
-                }.frame(width: geometry.size.width, height: 200, alignment: .bottom)
-            }
-            //.frame(width: geometry.size.width, height: 200, alignment: .bottom)
-            }
-            }
-            }
-
+                }//.frame(width: geometry.size.width, height: 150, alignment: .topLeading)
+            
+                    }//.frame(width: geometry.size.width, height: 200, alignment: .top)
+                }.frame(width: geometry.size.width, height: 220, alignment: .bottom)
+                //.offset(y:20)//.frame(width: geometry.size.width, height: 200, alignment: .top)
+        }
+        }
+        }
+        }
+       // }.navigationBarTitleDisplayMode(.inline)
+        
+    }
 }
-
 func drawPathAgain(list:[CGPoint]) {
     //imageVideo.
 }

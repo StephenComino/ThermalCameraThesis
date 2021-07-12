@@ -9,6 +9,6 @@
 
 @interface OpenCVWrapper : NSObject
 
-+ (UIImage *)toGray:(UIImage *)source;
++ (UIImage *)toGray:(UIImage *)source display: (int)display_style;
 + (void) processImage:(UIImage *)image;
 @end

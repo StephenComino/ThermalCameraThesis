@@ -5,6 +5,7 @@ var points = [CGPoint]()
 var num = 0
 var index_item = 0
 var last_pixel:CGPoint? = nil
+public var color_scheme = -1
 // View Controller Representable
 // Bridge between Objective C (UI KIT) and Swift UI
 
@@ -20,7 +21,14 @@ struct imageVideo: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-    
+        
+        uiViewController.view.setNeedsDisplay()
+        
+        //uiViewController.view.setNeedsLayout()
+        //uiViewController.view.
+        //uiViewController.viewDidAppear(true)
+        //uiViewController.up
+        
     }
     
     
@@ -34,6 +42,8 @@ class VideoViewController: UIViewController {
     var circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
     let path = UIBezierPath()
     var added_items : modularised_ui = modularised_ui()
+    var stream: MJPEGStreamLib? = nil
+    var imageView: UIImageView? = nil
    // var stream = MJPEGStreamLib()
     
     init(added_items: modularised_ui) {
@@ -53,22 +63,39 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         // Get the Request for temperature
         temp_timer(added_items: added_items)
-        var imageView : UIImageView
-        var stream: MJPEGStreamLib
-        var url: URL?
+        //imageView : UIImageView
+        //var stream: MJPEGStreamLib
+        
         //print("\(OpenCVWrapper.openCVVersionString())")
         imageView  = UIImageView(frame:CGRect(x:0, y:0, width:375, height:299));
+        imageView!.tag = 55
         // Set the ImageView to the stream object
-        stream = MJPEGStreamLib(imageView: imageView)
-        // Your stream url should be here !
+        stream = MJPEGStreamLib(imageView: imageView!)
+        var url: URL?
         url = URL(string: "http://192.168.0.187/video_stream")
-        stream.contentURL = url
-        
-        stream.play() // Play the stream
+        stream!.contentURL = url
+        stream!.play() // Play the stream
         //print(stream.imageView.image)
-        self.view.addSubview(imageView)
-        
+        //self.imageView.tag = 55
+        let value = stream!.get_view()
+        print("Value \(value)")
+        if (value != self.added_items.current_view) {
+            stream!.change_view(data: Int32(self.added_items.current_view))
+            imageView  = UIImageView(frame:CGRect(x:0, y:0, width:375, height:299));
+            // Set the ImageView to the stream object
+            stream = MJPEGStreamLib(imageView: imageView!)
+            
+            if let viewWithTag = self.view.viewWithTag(55) {
+                viewWithTag.removeFromSuperview()
+                print("REMOVED")
+                self.view.addSubview(imageView!)
+            }
+        } else {
+        self.view.addSubview(imageView!)
+        }
     }
+    
+   
     func showDrawing(list: [CGPoint]) {
         for p in list {
             circle_path.add_point(point: p)
@@ -77,6 +104,11 @@ class VideoViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        //stream.change_view(data: )
+        //open func change_view(data: Int32) {
+        //    self.object_view = data
+        // }
+        // Your stream url should be here !
         
     }
     
@@ -135,66 +167,7 @@ class VideoViewController: UIViewController {
             //print("Adding")
             let circleCenter = touch.location(in: view)
             let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
-            var x_positive = false
-            var y_positive = false
-            if (last_pixel!.x != point.x && last_pixel!.y != point.y)
-            {
-                let rise_x = point.x - last_pixel!.x
-                if (rise_x > 0 ) {
-                    x_positive = true
-                }
-                let run_y = point.y - last_pixel!.y
-                if (run_y > 0) {
-                    y_positive = true
-                }
-                // (1, 2) \
-                //  |      \
-                //  |       \
-                //  |        \
-                //   --------- (3,4)
-                var found_x = false
-                var found_y = false
-                while (last_pixel!.x != point.x && last_pixel!.y != point.y) {
-                    if (x_positive) {
-                    if ((last_pixel!.x + (rise_x / 2)) > point.x) {
-                        found_x = true
-                    } else {
-                        last_pixel!.x = last_pixel!.x + (rise_x / 2)
-                    }
-                    } else {
-                        if ((last_pixel!.x + (rise_x / 2)) < point.x) {
-                            found_x = true
-                        } else {
-                            last_pixel!.x = last_pixel!.x + (rise_x / 2)
-                        }
-                    }
-                    
-                    if (y_positive) {
-                        if ((last_pixel!.y + (run_y / 2)) > point.y) {
-                            found_y = true
-                        } else {
-                            last_pixel!.y = last_pixel!.y + (run_y / 2)
-                        }
-                    } else {
-                        if ((last_pixel!.y + (run_y / 2)) < point.y) {
-                            found_y = true
-                        } else {
-                            last_pixel!.y = last_pixel!.y + (run_y / 2)
-                        }
-                    }
-                    circle_path.add_point(point: last_pixel!)
-                    if (found_x && found_y) {
-                        break
-                    }
-                }
-                    
-            }
-            points.uniqueInPlace(for: \.self)
-            //    circle_path.add_point(point:  )
-                
-          //  }
-            // Join up
-            //pointsArray.append(point)
+         
             circle_path.add_point(point: point)
             
             
@@ -206,6 +179,7 @@ class VideoViewController: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("ended")
+     
         circle_path.add_point(point: CGPoint(x: points[0].x, y: points[0].y))
         circle_path.setNeedsDisplay()
         num += 1
@@ -269,10 +243,7 @@ class CircleView: UIView {
 
     func add_point(point: CGPoint) {
         points.append(point)
-        //print(point)
-        //print(points)
-        //print(last_index)
-        //draw(CGRect(x: 0, y: 0, width: 400, height: 300))
+
     }
     func remove_list() {
         last_index = 0

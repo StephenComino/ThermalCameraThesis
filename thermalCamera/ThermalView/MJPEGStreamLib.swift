@@ -9,7 +9,7 @@
 import UIKit
 
 open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
-    
+
     fileprivate enum StreamStatus {
         case stop
         case loading
@@ -26,16 +26,20 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
     open var didFinishLoading: (()->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView
+    open var object_view: Int32
     
     public init(imageView: UIImageView) {
         self.imageView = imageView
+        self.object_view = -1
         super.init()
+        //self.object_view = -1
         self.session = Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     }
     
     public convenience init(imageView: UIImageView, contentURL: URL) {
         self.init(imageView: imageView)
         self.contentURL = contentURL
+        //self.object_view = -1
     }
     
     deinit {
@@ -72,6 +76,12 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
         status = .stop
         dataTask?.cancel()
     }
+    open func change_view(data: Int32) {
+        self.object_view = data
+    }
+    open func get_view() -> Int32 {
+        return self.object_view
+    }
     
     // NSURLSessionDataDelegate
     
@@ -89,7 +99,7 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
             // Popup Screen when the user is interested
             
             // Set the imageview as received stream
-            DispatchQueue.main.async { self.imageView.image = OpenCVWrapper.toGray(receivedImage) } //print(self.imageView.image) }
+            DispatchQueue.main.async { self.imageView.image = OpenCVWrapper.toGray(receivedImage, display: Int32(color_scheme)) } //print(self.imageView.image) }
         }
         
         receivedData = NSMutableData()
