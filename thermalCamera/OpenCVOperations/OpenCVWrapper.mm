@@ -2,8 +2,8 @@
 //  OpenCVWrapper.m
 //  OpenCV
 //
-//  Created by Dmytro Nasyrov on 5/1/17.
-//  Copyright © 2017 Pharos Production Inc. All rights reserved.
+//  Adapted by Stephen Comino
+//  From https://medium.com/salt-pepper/opencv-swift-wrapper-6947ba236809
 //
 
 #ifdef __cplusplus
@@ -25,7 +25,7 @@ using namespace cv;
 
 #ifdef __cplusplus
 
-+ (Mat)_grayFrom:(Mat)source display: (int) display_style;
++ (Mat)_colorFrom:(Mat)source display: (int) display_style;
 + (Mat)_matFrom:(UIImage *)source;
 + (UIImage *)_imageFrom:(Mat)source;
 + (void) processImage:(UIImage *)image;
@@ -40,22 +40,27 @@ using namespace cv;
 
 #pragma mark Public
 
+// Add Zoom to this function
 + (UIImage *)toGray:(UIImage *)source display: (int)display_style {
-    return [OpenCVWrapper _imageFrom:[OpenCVWrapper _grayFrom:[OpenCVWrapper _matFrom:source] display:display_style]];
+    return [OpenCVWrapper _imageFrom:[OpenCVWrapper _colorFrom:[OpenCVWrapper _matFrom:source] display:display_style]];
 }
 
 #pragma mark Private
 
-+ (Mat)_grayFrom:(Mat)source display: (int) display_style{
++ (Mat)_colorFrom:(Mat)source display: (int) display_style{
     //cout << "-> grayFrom ->";
     Mat result;
     Mat img_color;
     // Apply the colormap:
+    // Equalise the histogram!
+    //cv::equalizeHist(source, source);
     switch (display_style) {
         case -1:
+            //cv::detailEnhance(source, source, 10.0, 0.15);
             cv::applyColorMap(source, img_color, COLORMAP_BONE);
             break;
         case 0:
+            // Light blue to Dark Blue
             cv::applyColorMap(source, img_color, COLORMAP_AUTUMN);
             
             break;
@@ -167,13 +172,17 @@ using namespace cv;
     CGFloat rows = CGImageGetHeight(image);
     //cout << "Height " << rows << endl;
     Mat result(rows, cols, CV_8U);
-
+    Mat result2(rows, cols, CV_8U);
+    //Mat result(rows, cols, CV_8UC3, Scalar(1,2,3)); // 8 bits per component, 4 channels
     CGBitmapInfo bitmapFlags = kCGBitmapByteOrderDefault;
+    // KCGImageAlphaNone |
+    //CGBitmapInfo bitmapFlags = kCGImageAlphaNoneSkipLast|kCGBitmapFloatComponents;
     size_t bitsPerComponent = 8;
     size_t bytesPerRow = result.step[0];
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image);
-    
+    //cv::cvtColor(result, result, COLOR_GRAY2RGB);
     CGContextRef context = CGBitmapContextCreate(result.data, cols, rows, bitsPerComponent, bytesPerRow, colorSpace, bitmapFlags);
+    //cv::detailEnhance(result, result, 10.0, 0.15);
     CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, cols, rows), image);
     CGContextRelease(context);
     

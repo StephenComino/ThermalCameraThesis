@@ -2,7 +2,7 @@
 //  DropDownButton.swift
 //  thermalCamera
 //
-//  Created by Stephanie Shore on 3/7/21.
+//  Created by Stephen Comino on 3/7/21.
 //
 
 import SwiftUI
@@ -17,11 +17,12 @@ struct DropDownButton: View {
         GeometryReader { geometry in
             
         VStack (alignment: .leading, spacing: 5) {
-            Text("Pick a Image Display")
+            Text("Pick an Image Display")
                 .font(.title)
                 .padding(10)
                 .frame(maxWidth: geometry.size.width, alignment: .center)
             List(Array(zip(self.added_items.values.indices, self.added_items.values)), id: \.1) { (index, key) in
+            
                 HStack {
                     Spacer()
                     Text("\(key)")

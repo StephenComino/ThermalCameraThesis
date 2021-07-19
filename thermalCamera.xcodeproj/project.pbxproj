@@ -1,0 +1,841 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		302B2263D88FFAC850B0D517 /* Pods_thermalCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF105C2C0A35CA19DFB8FEE /* Pods_thermalCamera.framework */; };
+		D03B3315268FC8A000C21EE7 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B3314268FC8A000C21EE7 /* DropDownButton.swift */; };
+		D03B3317269BC62300C21EE7 /* setAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B3316269BC62300C21EE7 /* setAlertView.swift */; };
+		D03B331D269BEE1600C21EE7 /* timerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B331C269BEE1600C21EE7 /* timerModel.swift */; };
+		D03B331F269BEFAD00C21EE7 /* mainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B331E269BEFAD00C21EE7 /* mainModel.swift */; };
+		D03B3322269CEE3600C21EE7 /* thermalPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B3321269CEE3600C21EE7 /* thermalPillView.swift */; };
+		D03B332526A3FD3D00C21EE7 /* distanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B332426A3FD3D00C21EE7 /* distanceView.swift */; };
+		D03B332826A4F2E400C21EE7 /* distanceTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */; };
+		D08C05B42669FE5400D8FB34 /* thermalCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */; };
+		D08C05B62669FE5400D8FB34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05B52669FE5400D8FB34 /* ContentView.swift */; };
+		D08C05B82669FE5700D8FB34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08C05B72669FE5700D8FB34 /* Assets.xcassets */; };
+		D08C05BB2669FE5700D8FB34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08C05BA2669FE5700D8FB34 /* Preview Assets.xcassets */; };
+		D08C05C62669FE5800D8FB34 /* thermalCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05C52669FE5800D8FB34 /* thermalCameraTests.swift */; };
+		D08C05D12669FE5800D8FB34 /* thermalCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05D02669FE5800D8FB34 /* thermalCameraUITests.swift */; };
+		D08C05E7266A0D8400D8FB34 /* cameraInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05E6266A0D8400D8FB34 /* cameraInterface.swift */; };
+		D0AA86BD267D6ED200E01E59 /* timerviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA86BC267D6ED200E01E59 /* timerviewmodel.swift */; };
+		D0AAAB31267176320030DE18 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB30267176320030DE18 /* SwiftUIView.swift */; };
+		D0AAAB332675BD6C0030DE18 /* ThermoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB322675BD6C0030DE18 /* ThermoView.swift */; };
+		D0AAAB362676EAE10030DE18 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB352676EAE10030DE18 /* OpenCVWrapper.mm */; };
+		D0AAAB3A2677043F0030DE18 /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB392677043E0030DE18 /* MJPEGStreamLib.swift */; };
+		D168E17A61284C959F3ED245 /* Pods_thermalCameraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B0FDD298A1AAF7F2796786 /* Pods_thermalCameraTests.framework */; };
+		ED6C817A8914D5987C7FC804 /* Pods_thermalCamera_thermalCameraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6E15C1796CA8805DE2669D /* Pods_thermalCamera_thermalCameraUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D08C05C22669FE5800D8FB34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D08C05A82669FE5400D8FB34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D08C05AF2669FE5400D8FB34;
+			remoteInfo = thermalCamera;
+		};
+		D08C05CD2669FE5800D8FB34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D08C05A82669FE5400D8FB34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D08C05AF2669FE5400D8FB34;
+			remoteInfo = thermalCamera;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A28526E46DBFAB0D894AB51 /* Pods-thermalCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCameraTests.release.xcconfig"; path = "Target Support Files/Pods-thermalCameraTests/Pods-thermalCameraTests.release.xcconfig"; sourceTree = "<group>"; };
+		1FF105C2C0A35CA19DFB8FEE /* Pods_thermalCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_thermalCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E9C5805A0D24D8F7672E57 /* Pods-thermalCamera-thermalCameraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCamera-thermalCameraUITests.release.xcconfig"; path = "Target Support Files/Pods-thermalCamera-thermalCameraUITests/Pods-thermalCamera-thermalCameraUITests.release.xcconfig"; sourceTree = "<group>"; };
+		421DA114C8EB5B526354726E /* Pods-thermalCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCamera.debug.xcconfig"; path = "Target Support Files/Pods-thermalCamera/Pods-thermalCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		5E6E4AE93B12F6F3519DAB77 /* Pods-thermalCamera-thermalCameraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCamera-thermalCameraUITests.debug.xcconfig"; path = "Target Support Files/Pods-thermalCamera-thermalCameraUITests/Pods-thermalCamera-thermalCameraUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		65B0FDD298A1AAF7F2796786 /* Pods_thermalCameraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_thermalCameraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0CCAD9B35B9452F28373551 /* Pods-thermalCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCamera.release.xcconfig"; path = "Target Support Files/Pods-thermalCamera/Pods-thermalCamera.release.xcconfig"; sourceTree = "<group>"; };
+		D03B3314268FC8A000C21EE7 /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
+		D03B3316269BC62300C21EE7 /* setAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setAlertView.swift; sourceTree = "<group>"; };
+		D03B331C269BEE1600C21EE7 /* timerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerModel.swift; sourceTree = "<group>"; };
+		D03B331E269BEFAD00C21EE7 /* mainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainModel.swift; sourceTree = "<group>"; };
+		D03B3321269CEE3600C21EE7 /* thermalPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalPillView.swift; sourceTree = "<group>"; };
+		D03B332426A3FD3D00C21EE7 /* distanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceView.swift; sourceTree = "<group>"; };
+		D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceTimerViewModel.swift; sourceTree = "<group>"; };
+		D08C05B02669FE5400D8FB34 /* thermalCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thermalCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalCameraApp.swift; sourceTree = "<group>"; };
+		D08C05B52669FE5400D8FB34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D08C05B72669FE5700D8FB34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D08C05BA2669FE5700D8FB34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D08C05BC2669FE5700D8FB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D08C05C12669FE5800D8FB34 /* thermalCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = thermalCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D08C05C52669FE5800D8FB34 /* thermalCameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalCameraTests.swift; sourceTree = "<group>"; };
+		D08C05C72669FE5800D8FB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D08C05CC2669FE5800D8FB34 /* thermalCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = thermalCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D08C05D02669FE5800D8FB34 /* thermalCameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalCameraUITests.swift; sourceTree = "<group>"; };
+		D08C05D22669FE5800D8FB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D08C05E6266A0D8400D8FB34 /* cameraInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraInterface.swift; sourceTree = "<group>"; };
+		D0AA86BC267D6ED200E01E59 /* timerviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerviewmodel.swift; sourceTree = "<group>"; };
+		D0AAAB30267176320030DE18 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		D0AAAB322675BD6C0030DE18 /* ThermoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermoView.swift; sourceTree = "<group>"; };
+		D0AAAB342676EAE00030DE18 /* thermalCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "thermalCamera-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0AAAB352676EAE10030DE18 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		D0AAAB372676EC060030DE18 /* OpenCVWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		D0AAAB382676EC3C0030DE18 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		D0AAAB392677043E0030DE18 /* MJPEGStreamLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStreamLib.swift; sourceTree = "<group>"; };
+		D126BFB817199C2CB33CD9B7 /* Pods-thermalCameraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thermalCameraTests.debug.xcconfig"; path = "Target Support Files/Pods-thermalCameraTests/Pods-thermalCameraTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB6E15C1796CA8805DE2669D /* Pods_thermalCamera_thermalCameraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_thermalCamera_thermalCameraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D08C05AD2669FE5400D8FB34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302B2263D88FFAC850B0D517 /* Pods_thermalCamera.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05BE2669FE5800D8FB34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D168E17A61284C959F3ED245 /* Pods_thermalCameraTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05C92669FE5800D8FB34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED6C817A8914D5987C7FC804 /* Pods_thermalCamera_thermalCameraUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C15D1AFFD2010468E887D0D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				421DA114C8EB5B526354726E /* Pods-thermalCamera.debug.xcconfig */,
+				B0CCAD9B35B9452F28373551 /* Pods-thermalCamera.release.xcconfig */,
+				5E6E4AE93B12F6F3519DAB77 /* Pods-thermalCamera-thermalCameraUITests.debug.xcconfig */,
+				41E9C5805A0D24D8F7672E57 /* Pods-thermalCamera-thermalCameraUITests.release.xcconfig */,
+				D126BFB817199C2CB33CD9B7 /* Pods-thermalCameraTests.debug.xcconfig */,
+				0A28526E46DBFAB0D894AB51 /* Pods-thermalCameraTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D03B3318269BE8AE00C21EE7 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				D08C05B52669FE5400D8FB34 /* ContentView.swift */,
+				D03B331E269BEFAD00C21EE7 /* mainModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		D03B3319269BE8DE00C21EE7 /* OpenCVOperations */ = {
+			isa = PBXGroup;
+			children = (
+				D0AAAB382676EC3C0030DE18 /* PrefixHeader.pch */,
+				D0AAAB342676EAE00030DE18 /* thermalCamera-Bridging-Header.h */,
+				D0AAAB372676EC060030DE18 /* OpenCVWrapper.h */,
+				D0AAAB352676EAE10030DE18 /* OpenCVWrapper.mm */,
+			);
+			path = OpenCVOperations;
+			sourceTree = "<group>";
+		};
+		D03B331A269BE90B00C21EE7 /* ThermalVideoDropdown */ = {
+			isa = PBXGroup;
+			children = (
+				D03B3314268FC8A000C21EE7 /* DropDownButton.swift */,
+			);
+			path = ThermalVideoDropdown;
+			sourceTree = "<group>";
+		};
+		D03B331B269BE92E00C21EE7 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				D03B3316269BC62300C21EE7 /* setAlertView.swift */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
+		D03B3320269CEE1F00C21EE7 /* thermalPillView */ = {
+			isa = PBXGroup;
+			children = (
+				D03B3321269CEE3600C21EE7 /* thermalPillView.swift */,
+			);
+			path = thermalPillView;
+			sourceTree = "<group>";
+		};
+		D03B332326A3FD0400C21EE7 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				D03B332426A3FD3D00C21EE7 /* distanceView.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		D03B332626A4F2B000C21EE7 /* distanceTimer */ = {
+			isa = PBXGroup;
+			children = (
+				D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */,
+			);
+			path = distanceTimer;
+			sourceTree = "<group>";
+		};
+		D08C05A72669FE5400D8FB34 = {
+			isa = PBXGroup;
+			children = (
+				D08C05B22669FE5400D8FB34 /* thermalCamera */,
+				D08C05C42669FE5800D8FB34 /* thermalCameraTests */,
+				D08C05CF2669FE5800D8FB34 /* thermalCameraUITests */,
+				D08C05B12669FE5400D8FB34 /* Products */,
+				C15D1AFFD2010468E887D0D1 /* Pods */,
+				DD26F2FDFF102357EBC25847 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D08C05B12669FE5400D8FB34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D08C05B02669FE5400D8FB34 /* thermalCamera.app */,
+				D08C05C12669FE5800D8FB34 /* thermalCameraTests.xctest */,
+				D08C05CC2669FE5800D8FB34 /* thermalCameraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D08C05B22669FE5400D8FB34 /* thermalCamera */ = {
+			isa = PBXGroup;
+			children = (
+				D03B332626A4F2B000C21EE7 /* distanceTimer */,
+				D03B332326A3FD0400C21EE7 /* New Group */,
+				D03B3320269CEE1F00C21EE7 /* thermalPillView */,
+				D03B331B269BE92E00C21EE7 /* AlertView */,
+				D03B331A269BE90B00C21EE7 /* ThermalVideoDropdown */,
+				D03B3319269BE8DE00C21EE7 /* OpenCVOperations */,
+				D03B3318269BE8AE00C21EE7 /* MainView */,
+				D0AA86BB267D6EBF00E01E59 /* timer */,
+				D0AAAB3B267746A20030DE18 /* ThermalView */,
+				D08C05B72669FE5700D8FB34 /* Assets.xcassets */,
+				D08C05BC2669FE5700D8FB34 /* Info.plist */,
+				D08C05B92669FE5700D8FB34 /* Preview Content */,
+				D0AAAB30267176320030DE18 /* SwiftUIView.swift */,
+				D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */,
+				D0AAAB322675BD6C0030DE18 /* ThermoView.swift */,
+			);
+			path = thermalCamera;
+			sourceTree = "<group>";
+		};
+		D08C05B92669FE5700D8FB34 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D08C05BA2669FE5700D8FB34 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D08C05C42669FE5800D8FB34 /* thermalCameraTests */ = {
+			isa = PBXGroup;
+			children = (
+				D08C05C52669FE5800D8FB34 /* thermalCameraTests.swift */,
+				D08C05C72669FE5800D8FB34 /* Info.plist */,
+			);
+			path = thermalCameraTests;
+			sourceTree = "<group>";
+		};
+		D08C05CF2669FE5800D8FB34 /* thermalCameraUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D08C05D02669FE5800D8FB34 /* thermalCameraUITests.swift */,
+				D08C05D22669FE5800D8FB34 /* Info.plist */,
+			);
+			path = thermalCameraUITests;
+			sourceTree = "<group>";
+		};
+		D0AA86BB267D6EBF00E01E59 /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				D0AA86BC267D6ED200E01E59 /* timerviewmodel.swift */,
+				D03B331C269BEE1600C21EE7 /* timerModel.swift */,
+			);
+			path = timer;
+			sourceTree = "<group>";
+		};
+		D0AAAB3B267746A20030DE18 /* ThermalView */ = {
+			isa = PBXGroup;
+			children = (
+				D0AAAB392677043E0030DE18 /* MJPEGStreamLib.swift */,
+				D08C05E6266A0D8400D8FB34 /* cameraInterface.swift */,
+			);
+			path = ThermalView;
+			sourceTree = "<group>";
+		};
+		DD26F2FDFF102357EBC25847 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FF105C2C0A35CA19DFB8FEE /* Pods_thermalCamera.framework */,
+				DB6E15C1796CA8805DE2669D /* Pods_thermalCamera_thermalCameraUITests.framework */,
+				65B0FDD298A1AAF7F2796786 /* Pods_thermalCameraTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D08C05AF2669FE5400D8FB34 /* thermalCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D08C05D52669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCamera" */;
+			buildPhases = (
+				E80EF9ABED9DA8CD2DE5DB09 /* [CP] Check Pods Manifest.lock */,
+				D08C05AC2669FE5400D8FB34 /* Sources */,
+				D08C05AD2669FE5400D8FB34 /* Frameworks */,
+				D08C05AE2669FE5400D8FB34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = thermalCamera;
+			productName = thermalCamera;
+			productReference = D08C05B02669FE5400D8FB34 /* thermalCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D08C05C02669FE5800D8FB34 /* thermalCameraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D08C05D82669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCameraTests" */;
+			buildPhases = (
+				963F066116C4588FFEB0C2B3 /* [CP] Check Pods Manifest.lock */,
+				D08C05BD2669FE5800D8FB34 /* Sources */,
+				D08C05BE2669FE5800D8FB34 /* Frameworks */,
+				D08C05BF2669FE5800D8FB34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D08C05C32669FE5800D8FB34 /* PBXTargetDependency */,
+			);
+			name = thermalCameraTests;
+			productName = thermalCameraTests;
+			productReference = D08C05C12669FE5800D8FB34 /* thermalCameraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D08C05CB2669FE5800D8FB34 /* thermalCameraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D08C05DB2669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCameraUITests" */;
+			buildPhases = (
+				F56951B9F1B69EF3BFDB758F /* [CP] Check Pods Manifest.lock */,
+				D08C05C82669FE5800D8FB34 /* Sources */,
+				D08C05C92669FE5800D8FB34 /* Frameworks */,
+				D08C05CA2669FE5800D8FB34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D08C05CE2669FE5800D8FB34 /* PBXTargetDependency */,
+			);
+			name = thermalCameraUITests;
+			productName = thermalCameraUITests;
+			productReference = D08C05CC2669FE5800D8FB34 /* thermalCameraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D08C05A82669FE5400D8FB34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					D08C05AF2669FE5400D8FB34 = {
+						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
+					};
+					D08C05C02669FE5800D8FB34 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = D08C05AF2669FE5400D8FB34;
+					};
+					D08C05CB2669FE5800D8FB34 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = D08C05AF2669FE5400D8FB34;
+					};
+				};
+			};
+			buildConfigurationList = D08C05AB2669FE5400D8FB34 /* Build configuration list for PBXProject "thermalCamera" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D08C05A72669FE5400D8FB34;
+			productRefGroup = D08C05B12669FE5400D8FB34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D08C05AF2669FE5400D8FB34 /* thermalCamera */,
+				D08C05C02669FE5800D8FB34 /* thermalCameraTests */,
+				D08C05CB2669FE5800D8FB34 /* thermalCameraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D08C05AE2669FE5400D8FB34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D08C05BB2669FE5700D8FB34 /* Preview Assets.xcassets in Resources */,
+				D08C05B82669FE5700D8FB34 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05BF2669FE5800D8FB34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05CA2669FE5800D8FB34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		963F066116C4588FFEB0C2B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-thermalCameraTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E80EF9ABED9DA8CD2DE5DB09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-thermalCamera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F56951B9F1B69EF3BFDB758F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-thermalCamera-thermalCameraUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D08C05AC2669FE5400D8FB34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03B331F269BEFAD00C21EE7 /* mainModel.swift in Sources */,
+				D03B3315268FC8A000C21EE7 /* DropDownButton.swift in Sources */,
+				D08C05B62669FE5400D8FB34 /* ContentView.swift in Sources */,
+				D03B332826A4F2E400C21EE7 /* distanceTimerViewModel.swift in Sources */,
+				D0AAAB332675BD6C0030DE18 /* ThermoView.swift in Sources */,
+				D0AAAB362676EAE10030DE18 /* OpenCVWrapper.mm in Sources */,
+				D08C05B42669FE5400D8FB34 /* thermalCameraApp.swift in Sources */,
+				D03B331D269BEE1600C21EE7 /* timerModel.swift in Sources */,
+				D0AA86BD267D6ED200E01E59 /* timerviewmodel.swift in Sources */,
+				D03B3317269BC62300C21EE7 /* setAlertView.swift in Sources */,
+				D0AAAB3A2677043F0030DE18 /* MJPEGStreamLib.swift in Sources */,
+				D0AAAB31267176320030DE18 /* SwiftUIView.swift in Sources */,
+				D03B332526A3FD3D00C21EE7 /* distanceView.swift in Sources */,
+				D08C05E7266A0D8400D8FB34 /* cameraInterface.swift in Sources */,
+				D03B3322269CEE3600C21EE7 /* thermalPillView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05BD2669FE5800D8FB34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D08C05C62669FE5800D8FB34 /* thermalCameraTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D08C05C82669FE5800D8FB34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D08C05D12669FE5800D8FB34 /* thermalCameraUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D08C05C32669FE5800D8FB34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D08C05AF2669FE5400D8FB34 /* thermalCamera */;
+			targetProxy = D08C05C22669FE5800D8FB34 /* PBXContainerItemProxy */;
+		};
+		D08C05CE2669FE5800D8FB34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D08C05AF2669FE5400D8FB34 /* thermalCamera */;
+			targetProxy = D08C05CD2669FE5800D8FB34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D08C05D32669FE5800D8FB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/thermalCamera/OpenCVOperations/PrefixHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D08C05D42669FE5800D8FB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/thermalCamera/OpenCVOperations/PrefixHeader.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D08C05D62669FE5800D8FB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 421DA114C8EB5B526354726E /* Pods-thermalCamera.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"thermalCamera/Preview Content\"";
+				DEVELOPMENT_TEAM = R96W6V2NCB;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = thermalCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraBest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "thermalCamera/OpenCVOperations/thermalCamera-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D08C05D72669FE5800D8FB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0CCAD9B35B9452F28373551 /* Pods-thermalCamera.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"thermalCamera/Preview Content\"";
+				DEVELOPMENT_TEAM = R96W6V2NCB;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = thermalCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraBest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "thermalCamera/OpenCVOperations/thermalCamera-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D08C05D92669FE5800D8FB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D126BFB817199C2CB33CD9B7 /* Pods-thermalCameraTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = thermalCameraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/thermalCamera.app/thermalCamera";
+			};
+			name = Debug;
+		};
+		D08C05DA2669FE5800D8FB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A28526E46DBFAB0D894AB51 /* Pods-thermalCameraTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = thermalCameraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/thermalCamera.app/thermalCamera";
+			};
+			name = Release;
+		};
+		D08C05DC2669FE5800D8FB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E6E4AE93B12F6F3519DAB77 /* Pods-thermalCamera-thermalCameraUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = thermalCameraUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = thermalCamera;
+			};
+			name = Debug;
+		};
+		D08C05DD2669FE5800D8FB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41E9C5805A0D24D8F7672E57 /* Pods-thermalCamera-thermalCameraUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = thermalCameraUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = commshore.thermalCameraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = thermalCamera;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D08C05AB2669FE5400D8FB34 /* Build configuration list for PBXProject "thermalCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D08C05D32669FE5800D8FB34 /* Debug */,
+				D08C05D42669FE5800D8FB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D08C05D52669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D08C05D62669FE5800D8FB34 /* Debug */,
+				D08C05D72669FE5800D8FB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D08C05D82669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCameraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D08C05D92669FE5800D8FB34 /* Debug */,
+				D08C05DA2669FE5800D8FB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D08C05DB2669FE5800D8FB34 /* Build configuration list for PBXNativeTarget "thermalCameraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D08C05DC2669FE5800D8FB34 /* Debug */,
+				D08C05DD2669FE5800D8FB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D08C05A82669FE5400D8FB34 /* Project object */;
+}

@@ -2,7 +2,7 @@
 //  mainModel.swift
 //  thermalCamera
 //
-//  Created by Stephanie Shore on 12/7/21.
+//  Created by Stephen Comino on 12/7/21.
 //
 
 import Foundation
@@ -15,6 +15,14 @@ struct Temperature_object: Identifiable {
     let low_range: Float
     //var temp_range: [CGPoint]
 }
+
+struct distance_object: Identifiable {
+    let id = UUID()
+    let name: String
+    let distance: Double
+
+}
+
 class Thermal_Objects: Identifiable, ObservableObject {
     @Published var id = UUID()
     @Published var name: String = ""
@@ -27,3 +35,10 @@ class Thermal_Objects: Identifiable, ObservableObject {
     @Published var alert_min: String = ""
 }
 
+class Distance_Object: Identifiable, ObservableObject {
+    @Published var id = UUID()
+    @Published var name: String = ""
+    @Published var distance: Double = 0.0
+    @Published var distance_range: [CGPoint] = []
+    @Published var tapped: Bool = false
+}

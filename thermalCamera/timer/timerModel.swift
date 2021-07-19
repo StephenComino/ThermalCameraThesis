@@ -2,7 +2,7 @@
 //  timerModel.swift
 //  thermalCamera
 //
-//  Created by Stephanie Shore on 12/7/21.
+//  Created by Stephen Comino on 12/7/21.
 //
 
 import Foundation

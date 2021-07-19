@@ -7,7 +7,7 @@
 
 import Foundation
 
-class temp_timer {
+class distance_temp_timer {
     var added_items: modularised_ui   // just member
         
     init (added_items: modularised_ui) {
@@ -29,16 +29,16 @@ class temp_timer {
         // For items in the range,, Get the pixel values
         // Average
         // Max and Min for in the area.
-        for items in self.added_items.thermal_objects {
+        for items in self.added_items.distance_objects {
             var x = [CGFloat]()
             var y = [CGFloat]()
-            for x_in in items.temp_range {
+            for x_in in items.distance_range {
                 x.append(x_in.x)
                 y.append(x_in.y)
             }
 
         
-            var url = URLComponents(string: "http://192.168.0.187/tempAt")!
+            var url = URLComponents(string: "http://192.168.0.187/distanceAt")!
 
             var queryItems = [URLQueryItem]()
             for x_val in x {
@@ -67,9 +67,8 @@ class temp_timer {
              let thermal_data_results = try? JSONDecoder().decode(therm_data.self, from: data) {
             DispatchQueue.main.async {
             
-                items.min_temp = (thermal_data_results.data?[0])!
-                items.max_temp = (thermal_data_results.data?[1])!
-                items.avg_temp = (thermal_data_results.data?[2])!
+                items.distance = (Double((thermal_data_results.data?[0])!))
+                
                 self.added_items.tapped.toggle()
             }
             completionHandler(thermal_data_results.data ?? [0.0])

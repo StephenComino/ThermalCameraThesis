@@ -1,22 +1,22 @@
 
 import SwiftUI
 
-var points = [CGPoint]()
-var num = 0
-var index_item = 0
-var last_pixel:CGPoint? = nil
-public var color_scheme = -1
+var distance_points = [CGPoint]()
+var num_distance = 0
+var index_item_distance = 0
+var last_pixel_distance:CGPoint? = nil
+public var color_scheme_distance = -1
 // View Controller Representable
 // Bridge between Objective C (UI KIT) and Swift UI
 
-struct imageVideo: UIViewControllerRepresentable {
+struct distanceImageVideo: UIViewControllerRepresentable {
 
     @EnvironmentObject var added_items : modularised_ui
 
     func makeUIViewController(context: Context) -> UIViewController {
         // Set the ImageView to the stream object
 
-        return VideoViewController(added_items: added_items)
+        return DistanceVideoViewController(added_items: added_items)
         
     }
     
@@ -36,10 +36,10 @@ struct imageVideo: UIViewControllerRepresentable {
 }
 
 // View Controller that lets us draw on the screen
-class VideoViewController: UIViewController {
+class DistanceVideoViewController: UIViewController {
     
     private var pointsArray = [CGPoint]()
-    var circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
+    var circle_path = DistanceCircleView(frame: CGRect(x:0, y:0, width:375, height:299))
     let path = UIBezierPath()
     var added_items : modularised_ui = modularised_ui()
     var stream: MJPEGStreamLib? = nil
@@ -62,7 +62,7 @@ class VideoViewController: UIViewController {
         
         super.viewDidLoad()
         // Get the Request for temperature
-        temp_timer(added_items: added_items)
+        distance_temp_timer(added_items: added_items)
         //imageView : UIImageView
         //var stream: MJPEGStreamLib
         
@@ -72,7 +72,7 @@ class VideoViewController: UIViewController {
         // Set the ImageView to the stream object
         stream = MJPEGStreamLib(imageView: imageView!)
         var url: URL?
-        url = URL(string: "http://192.168.0.187/video_stream?type=0")
+        url = URL(string: "http://192.168.0.187/video_stream?type=1")
         print(self.added_items.choose_view)
         stream!.contentURL = url
         stream!.play() // Play the stream
@@ -101,7 +101,7 @@ class VideoViewController: UIViewController {
         for p in list {
             circle_path.add_point(point: p)
         }
-        circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
+        circle_path = DistanceCircleView(frame: CGRect(x:0, y:0, width:375, height:299))
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -133,14 +133,14 @@ class VideoViewController: UIViewController {
         // Check if there is a subView and if there is, Remove it then add the new one
         // before we remove the old subview we should think of saving it
         //print(num)
-        if (num >= 1) {
+        if (num_distance >= 1) {
             removeSubView()
         }
         circle_path.remove_list()
         let touch = touches.first!
         _ = touch.location(in: self.view)
         
-        circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
+        circle_path = DistanceCircleView(frame: CGRect(x:0, y:0, width:375, height:299))
         circle_path.tag = 99
         if ((self.added_items.toggle_pencil_usage)) {
         for touch in touches {
@@ -153,7 +153,7 @@ class VideoViewController: UIViewController {
 
             
             let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
-            last_pixel = point
+            last_pixel_distance = point
             // Join up
             //pointsArray.append(point)
             circle_path.add_point(point: point)
@@ -185,22 +185,24 @@ class VideoViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("ended")
      
-        circle_path.add_point(point: CGPoint(x: points[0].x, y: points[0].y))
+        circle_path.add_point(point: CGPoint(x: distance_points[0].x, y: distance_points[0].y))
         circle_path.setNeedsDisplay()
-        num += 1
+        num_distance += 1
         // Add to the list
-        let obj = Thermal_Objects()
-        obj.name = "\(index_item)"
-        obj.temp_range = points
-        added_items.thermal_objects.append(obj)
-        index_item += 1
+        let obj = Distance_Object()
+        obj.name = "\(index_item_distance)"
+        obj.distance_range = distance_points
+        print(distance_points)
+        added_items.distance_objects.append(obj)
+        print(added_items.distance_objects)
+        index_item_distance += 1
     }
     
     func removeSubView(){
         //print("Start remove subview")
         if let viewWithTag = self.view.viewWithTag(99) {
             viewWithTag.removeFromSuperview()
-            num -= 1
+            num_distance -= 1
         }else{
             print("No!")
         }
@@ -209,24 +211,11 @@ class VideoViewController: UIViewController {
     
     
 }
-extension RangeReplaceableCollection {
-    /// Keeps only, in order, the first instances of
-    /// elements of the collection that compare equally for the keyPath.
-    mutating func uniqueInPlace<T: Hashable>(for keyPath: KeyPath<Element, T>) {
-        var unique = Set<T>()
-        removeAll { !unique.insert($0[keyPath: keyPath]).inserted }
-    }
-}
-extension CGPoint: Hashable {
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(x)
-    hasher.combine(y)
-  }
-}
+
 // Handle First touch
 // Handle touch moved
 // Handle touch end
-class CircleView: UIView {
+class DistanceCircleView: UIView {
     //private var points = [CGPoint]()
     var colour = Color.black
     var path = UIBezierPath()
@@ -247,30 +236,30 @@ class CircleView: UIView {
     
 
     func add_point(point: CGPoint) {
-        points.append(point)
+        distance_points.append(point)
 
     }
     func remove_list() {
         last_index = 0
-        points.removeAll()
+        distance_points.removeAll()
     }
     
     override func draw(_ rect: CGRect) {
         // Get the Graphics Context
         print("Drawing")
-        print(points)
+
         if let context = UIGraphicsGetCurrentContext() {
             
-            if (last_index == 0 && points.count > 0) {
-                self.path.move(to: points[0])
-                for p in points {
+            if (last_index == 0 && distance_points.count > 0) {
+                self.path.move(to: distance_points[0])
+                for p in distance_points {
                     self.path.addLine(to: p)
                 }
-                self.last_index = points.count
+                self.last_index = distance_points.count
 
-            } else if (points.count > 0) {
-                self.path.move(to: points[last_index])
-                for p in points[last_index...(points.count-1)] {
+            } else if (distance_points.count > 0) {
+                self.path.move(to: distance_points[last_index])
+                for p in distance_points[last_index...(distance_points.count-1)] {
                     self.path.addLine(to: p)
                 }
             } else {

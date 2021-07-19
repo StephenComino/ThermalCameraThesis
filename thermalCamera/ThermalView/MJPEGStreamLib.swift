@@ -2,7 +2,8 @@
 //  MjpegStreamLib.swift
 //  Pods
 //
-//  Created by Kuray ÖĞÜN on 24/08/2017.
+// By Stephen Comino
+// Adapted from https://github.com/WrathChaos/MJPEGStreamLib
 //
 //
 
