@@ -184,16 +184,17 @@ class VideoViewController: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("ended")
-     
-        circle_path.add_point(point: CGPoint(x: points[0].x, y: points[0].y))
-        circle_path.setNeedsDisplay()
-        num += 1
-        // Add to the list
-        let obj = Thermal_Objects()
-        obj.name = "\(index_item)"
-        obj.temp_range = points
-        added_items.thermal_objects.append(obj)
-        index_item += 1
+        if (points.count > 0) {
+            circle_path.add_point(point: CGPoint(x: points[0].x, y: points[0].y))
+            circle_path.setNeedsDisplay()
+            num += 1
+            // Add to the list
+            let obj = Thermal_Objects()
+            obj.name = "\(index_item)"
+            obj.temp_range = points
+            added_items.thermal_objects.append(obj)
+            index_item += 1
+        }
     }
     
     func removeSubView(){
