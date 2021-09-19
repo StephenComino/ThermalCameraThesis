@@ -14,7 +14,7 @@ There is two parts to it:
 4. 
 
 ## todo
-#[ ] - Calibrate the thermal Camera (Flir Lepton 3) with the Intel Realsense Depth Camera (Stereo Callibration)
-#[ ] - Zoom in / Zoom out features
-#[ ] - Test and remove Bugs from Iphone application
-#[ ] - Upload Steps and code to repreoduce product to this page.
+- [ ] - Calibrate the thermal Camera (Flir Lepton 3) with the Intel Realsense Depth Camera (Stereo Callibration)
+- [ ] - Zoom in / Zoom out features
+- [ ] - Test and remove Bugs from Iphone application
+- [ ] - Upload Steps and code to repreoduce product to this page.
