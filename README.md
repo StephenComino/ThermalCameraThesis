@@ -13,7 +13,7 @@ There is two parts to it:
 3. Change the thermal colour scheme
 4. 
 
-## todo
+## Todo
 - [ ] - Calibrate the thermal Camera (Flir Lepton 3) with the Intel Realsense Depth Camera (Stereo Callibration)
 - [ ] - Return Depth data with the Thermal Data for Iphone 7
 - [ ] - Zoom in / Zoom out features
