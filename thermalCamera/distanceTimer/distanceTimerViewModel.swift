@@ -38,7 +38,7 @@ class distance_temp_timer {
             }
 
         
-            var url = URLComponents(string: "http://192.168.0.187/distanceAt")!
+            var url = URLComponents(string: "http://192.168.0.187/tempAt")!
 
             var queryItems = [URLQueryItem]()
             for x_val in x {
@@ -67,7 +67,7 @@ class distance_temp_timer {
              let thermal_data_results = try? JSONDecoder().decode(therm_data.self, from: data) {
             DispatchQueue.main.async {
             
-                items.distance = (Double((thermal_data_results.data?[0])!))
+                items.distance = (Double((thermal_data_results.data?[3])!))
                 
                 self.added_items.tapped.toggle()
             }
