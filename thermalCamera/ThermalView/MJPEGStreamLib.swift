@@ -28,10 +28,12 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
     open var contentURL: URL?
     open var imageView: UIImageView
     open var object_view: Int32
+    open var scale_var: CGFloat
     
     public init(imageView: UIImageView) {
         self.imageView = imageView
         self.object_view = -1
+        self.scale_var = 1
         super.init()
         //self.object_view = -1
         self.session = Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
@@ -80,6 +82,12 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
     open func change_view(data: Int32) {
         self.object_view = data
     }
+    
+    open func scale(data: CGFloat)
+    {
+        self.scale_var = data
+    }
+    
     open func get_view() -> Int32 {
         return self.object_view
     }
@@ -100,7 +108,10 @@ open class MJPEGStreamLib: NSObject, URLSessionDataDelegate {
             // Popup Screen when the user is interested
             
             // Set the imageview as received stream
-            DispatchQueue.main.async { self.imageView.image = OpenCVWrapper.toGray(receivedImage, display: Int32(color_scheme)) } //print(self.imageView.image) }
+            DispatchQueue.main.async {
+                let transform = CGAffineTransform(scaleX: self.scale_var, y: self.scale_var);
+                self.imageView.transform = transform
+                self.imageView.image = OpenCVWrapper.toGray(receivedImage, display: Int32(color_scheme)) }
         }
         
         receivedData = NSMutableData()

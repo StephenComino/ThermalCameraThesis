@@ -13,6 +13,7 @@ struct Temperature_object: Identifiable {
     let temp: Float
     let top_range: Float
     let low_range: Float
+    let distance: Float
     //var temp_range: [CGPoint]
 }
 
@@ -33,6 +34,7 @@ class Thermal_Objects: Identifiable, ObservableObject {
     @Published var tapped: Bool = false
     @Published var alert_max: String = ""
     @Published var alert_min: String = ""
+    @Published var distance: Float = 0.0
 }
 
 class Distance_Object: Identifiable, ObservableObject {

@@ -2,7 +2,7 @@
 //  ThermoView.swift
 //  thermalCamera
 //
-//  Created by Stephanie Shore on 13/6/21.
+//  Created by Stephen Comino on 13/6/21.
 //
 
 import SwiftUI

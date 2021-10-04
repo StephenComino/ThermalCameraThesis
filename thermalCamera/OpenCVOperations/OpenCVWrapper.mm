@@ -54,6 +54,7 @@ using namespace cv;
     // Apply the colormap:
     // Equalise the histogram!
     //cv::equalizeHist(source, source);
+    //cv::resize(source, source, cv::Size(source.cols/2, source.rows/2), cv::INTER_LINEAR);
     switch (display_style) {
         case -1:
             //cv::detailEnhance(source, source, 10.0, 0.15);
@@ -148,6 +149,7 @@ using namespace cv;
             cv::applyColorMap(source, img_color, COLORMAP_BONE);
             break;
     }
+    //cv::resize(img_color, img_color, cv::Size(img_color.cols/4, img_color.rows/4));
     
     return img_color;
 }
@@ -166,7 +168,6 @@ using namespace cv;
     //cout << "matFrom ->";
     
     CGImageRef image = CGImageCreateCopy(source.CGImage);
- 
     CGFloat cols = CGImageGetWidth(image);
     //cout << "Width " << cols << endl;
     CGFloat rows = CGImageGetHeight(image);
@@ -181,6 +182,7 @@ using namespace cv;
     size_t bytesPerRow = result.step[0];
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image);
     //cv::cvtColor(result, result, COLOR_GRAY2RGB);
+    
     CGContextRef context = CGBitmapContextCreate(result.data, cols, rows, bitsPerComponent, bytesPerRow, colorSpace, bitmapFlags);
     //cv::detailEnhance(result, result, 10.0, 0.15);
     CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, cols, rows), image);

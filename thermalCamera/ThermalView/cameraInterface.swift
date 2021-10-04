@@ -1,4 +1,5 @@
-
+// View Controller Representable
+// Bridge between Objective C (UI KIT) and Swift UI
 import SwiftUI
 
 var points = [CGPoint]()
@@ -6,8 +7,6 @@ var num = 0
 var index_item = 0
 var last_pixel:CGPoint? = nil
 public var color_scheme = -1
-// View Controller Representable
-// Bridge between Objective C (UI KIT) and Swift UI
 
 struct imageVideo: UIViewControllerRepresentable {
 
@@ -23,14 +22,7 @@ struct imageVideo: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
         uiViewController.view.setNeedsDisplay()
-        
-        //uiViewController.view.setNeedsLayout()
-        //uiViewController.view.
-        //uiViewController.viewDidAppear(true)
-        //uiViewController.up
-        
     }
-    
     
     typealias UIViewControllerType = UIViewController
 }
@@ -44,12 +36,11 @@ class VideoViewController: UIViewController {
     var added_items : modularised_ui = modularised_ui()
     var stream: MJPEGStreamLib? = nil
     var imageView: UIImageView? = nil
-   // var stream = MJPEGStreamLib()
     
     init(added_items: modularised_ui) {
-           self.added_items = added_items
+        self.added_items = added_items
         
-           //super.init(coder: NSCoder)
+        //super.init(coder: NSCoder)
         super.init(nibName: nil, bundle: nil)
 
        }
@@ -63,11 +54,14 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         // Get the Request for temperature
         temp_timer(added_items: added_items)
-        //imageView : UIImageView
-        //var stream: MJPEGStreamLib
-        
-        //print("\(OpenCVWrapper.openCVVersionString())")
         imageView  = UIImageView(frame:CGRect(x:0, y:0, width:375, height:299));
+        // Zoom Functionality
+        self.view.clipsToBounds = true
+        let transform = CGAffineTransform(scaleX: added_items.zoom_factor, y: added_items.zoom_factor);
+        
+        imageView?.transform = transform
+        imageView?.bounds = CGRect(x:0, y:0, width:375, height:299)
+        imageView?.clipsToBounds = true
         imageView!.tag = 55
         // Set the ImageView to the stream object
         stream = MJPEGStreamLib(imageView: imageView!)
@@ -76,23 +70,29 @@ class VideoViewController: UIViewController {
         print(self.added_items.choose_view)
         stream!.contentURL = url
         stream!.play() // Play the stream
-        //print(stream.imageView.image)
-        //self.imageView.tag = 55
+        // Add Code the scale the view
+        
+
         let value = stream!.get_view()
-        print("Value \(value)")
         if (value != self.added_items.current_view) {
             stream!.change_view(data: Int32(self.added_items.current_view))
             imageView  = UIImageView(frame:CGRect(x:0, y:0, width:375, height:299));
             // Set the ImageView to the stream object
+            self.view.clipsToBounds = true
+            let transform = CGAffineTransform(scaleX: added_items.zoom_factor, y: added_items.zoom_factor);
+            imageView?.transform = transform
+            imageView?.bounds = CGRect(x:0, y:0, width:375, height:299)
+            imageView?.clipsToBounds = true
             stream = MJPEGStreamLib(imageView: imageView!)
             
             if let viewWithTag = self.view.viewWithTag(55) {
                 viewWithTag.removeFromSuperview()
-                print("REMOVED")
                 self.view.addSubview(imageView!)
             }
-        } else {
-        self.view.addSubview(imageView!)
+        }
+        else
+        {
+            self.view.addSubview(imageView!)
         }
     }
     
@@ -105,13 +105,10 @@ class VideoViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        //stream.change_view(data: )
-        //open func change_view(data: Int32) {
-        //    self.object_view = data
-        // }
-        // Your stream url should be here !
-        
+        let transform = CGAffineTransform(scaleX: added_items.zoom_factor, y: added_items.zoom_factor);
+        self.view.transform = transform
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super .viewDidDisappear(true)
         stream!.stop()
@@ -129,10 +126,9 @@ class VideoViewController: UIViewController {
     
     // Start the Touch Functions
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         // Check if there is a subView and if there is, Remove it then add the new one
         // before we remove the old subview we should think of saving it
-        //print(num)
+        stream?.scale(data: added_items.zoom_factor)
         if (num >= 1) {
             removeSubView()
         }
@@ -143,42 +139,28 @@ class VideoViewController: UIViewController {
         circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
         circle_path.tag = 99
         if ((self.added_items.toggle_pencil_usage)) {
-        for touch in touches {
-            
-        
-            //print(touch.location(in: self.view))
-               // Set the Center of the Circle
-               // 1
-            let circleCenter = touch.location(in: view)
+            for touch in touches {
 
-            
-            let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
-            last_pixel = point
-            // Join up
-            //pointsArray.append(point)
-            circle_path.add_point(point: point)
-    
-            
-            
-         
-            circle_path.change_colour(col: self.added_items.pencil_colour)
-            view.addSubview(circle_path)
-        }
+                let circleCenter = touch.location(in: view)
+                let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
+                last_pixel = point
+                // Join up
+                circle_path.add_point(point: point)
+                circle_path.change_colour(col: self.added_items.pencil_colour)
+                view.addSubview(circle_path)
+            }
         }
     }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if ((self.added_items.toggle_pencil_usage)) {
-        for touch in touches {
-            //print("Adding")
-            let circleCenter = touch.location(in: view)
-            let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
-         
-            circle_path.add_point(point: point)
-            
-            
-            circle_path.setNeedsDisplay()
-            
-        }
+            for touch in touches {
+                let circleCenter = touch.location(in: view)
+                let point = CGPoint(x: circleCenter.x, y: circleCenter.y)
+             
+                circle_path.add_point(point: point)
+                circle_path.setNeedsDisplay()
+            }
         }
     }
     
@@ -199,6 +181,7 @@ class VideoViewController: UIViewController {
     
     func removeSubView(){
         //print("Start remove subview")
+        stream?.scale(data: added_items.zoom_factor)
         if let viewWithTag = self.view.viewWithTag(99) {
             viewWithTag.removeFromSuperview()
             num -= 1
@@ -206,10 +189,8 @@ class VideoViewController: UIViewController {
             print("No!")
         }
     }
-    
-    
-    
 }
+
 extension RangeReplaceableCollection {
     /// Keeps only, in order, the first instances of
     /// elements of the collection that compare equally for the keyPath.
@@ -251,6 +232,7 @@ class CircleView: UIView {
         points.append(point)
 
     }
+    
     func remove_list() {
         last_index = 0
         points.removeAll()
@@ -280,11 +262,7 @@ class CircleView: UIView {
             UIColor(self.colour).set() //self.colour.set()
             self.path.stroke()
            //If you want to fill it as well
-           //path.fill()
-        context.strokePath()
-            
+            context.strokePath()
         }
     }
-    
-    
 }

@@ -2,8 +2,9 @@
 //  SwiftUIView.swift
 //  thermalCamera
 //
-//  Created by Stephanie Shore on 10/6/21.
+//  Created by Stephen Comino on 10/6/21.
 //
+// This view contains the buttons for the main view
 
 import SwiftUI
 import AVKit

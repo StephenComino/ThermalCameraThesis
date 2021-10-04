@@ -13,8 +13,6 @@
 		D03B331D269BEE1600C21EE7 /* timerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B331C269BEE1600C21EE7 /* timerModel.swift */; };
 		D03B331F269BEFAD00C21EE7 /* mainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B331E269BEFAD00C21EE7 /* mainModel.swift */; };
 		D03B3322269CEE3600C21EE7 /* thermalPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B3321269CEE3600C21EE7 /* thermalPillView.swift */; };
-		D03B332526A3FD3D00C21EE7 /* distanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B332426A3FD3D00C21EE7 /* distanceView.swift */; };
-		D03B332826A4F2E400C21EE7 /* distanceTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */; };
 		D08C05B42669FE5400D8FB34 /* thermalCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */; };
 		D08C05B62669FE5400D8FB34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05B52669FE5400D8FB34 /* ContentView.swift */; };
 		D08C05B82669FE5700D8FB34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08C05B72669FE5700D8FB34 /* Assets.xcassets */; };
@@ -61,8 +59,6 @@
 		D03B331C269BEE1600C21EE7 /* timerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerModel.swift; sourceTree = "<group>"; };
 		D03B331E269BEFAD00C21EE7 /* mainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainModel.swift; sourceTree = "<group>"; };
 		D03B3321269CEE3600C21EE7 /* thermalPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalPillView.swift; sourceTree = "<group>"; };
-		D03B332426A3FD3D00C21EE7 /* distanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceView.swift; sourceTree = "<group>"; };
-		D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceTimerViewModel.swift; sourceTree = "<group>"; };
 		D08C05B02669FE5400D8FB34 /* thermalCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thermalCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thermalCameraApp.swift; sourceTree = "<group>"; };
 		D08C05B52669FE5400D8FB34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,22 +169,6 @@
 			path = thermalPillView;
 			sourceTree = "<group>";
 		};
-		D03B332326A3FD0400C21EE7 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				D03B332426A3FD3D00C21EE7 /* distanceView.swift */,
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		D03B332626A4F2B000C21EE7 /* distanceTimer */ = {
-			isa = PBXGroup;
-			children = (
-				D03B332726A4F2E400C21EE7 /* distanceTimerViewModel.swift */,
-			);
-			path = distanceTimer;
-			sourceTree = "<group>";
-		};
 		D08C05A72669FE5400D8FB34 = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +194,6 @@
 		D08C05B22669FE5400D8FB34 /* thermalCamera */ = {
 			isa = PBXGroup;
 			children = (
-				D03B332626A4F2B000C21EE7 /* distanceTimer */,
-				D03B332326A3FD0400C21EE7 /* New Group */,
 				D03B3320269CEE1F00C21EE7 /* thermalPillView */,
 				D03B331B269BE92E00C21EE7 /* AlertView */,
 				D03B331A269BE90B00C21EE7 /* ThermalVideoDropdown */,
@@ -492,7 +470,6 @@
 				D03B331F269BEFAD00C21EE7 /* mainModel.swift in Sources */,
 				D03B3315268FC8A000C21EE7 /* DropDownButton.swift in Sources */,
 				D08C05B62669FE5400D8FB34 /* ContentView.swift in Sources */,
-				D03B332826A4F2E400C21EE7 /* distanceTimerViewModel.swift in Sources */,
 				D0AAAB332675BD6C0030DE18 /* ThermoView.swift in Sources */,
 				D0AAAB362676EAE10030DE18 /* OpenCVWrapper.mm in Sources */,
 				D08C05B42669FE5400D8FB34 /* thermalCameraApp.swift in Sources */,
@@ -501,7 +478,6 @@
 				D03B3317269BC62300C21EE7 /* setAlertView.swift in Sources */,
 				D0AAAB3A2677043F0030DE18 /* MJPEGStreamLib.swift in Sources */,
 				D0AAAB31267176320030DE18 /* SwiftUIView.swift in Sources */,
-				D03B332526A3FD3D00C21EE7 /* distanceView.swift in Sources */,
 				D08C05E7266A0D8400D8FB34 /* cameraInterface.swift in Sources */,
 				D03B3322269CEE3600C21EE7 /* thermalPillView.swift in Sources */,
 			);

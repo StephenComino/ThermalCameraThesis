@@ -5,6 +5,11 @@
 //  Created by Stephen Comino on 13/7/21.
 //
 
+// This file is responsible for showing the temperature pill on the right hand side of the thermal view
+// It will show the colour of the hottest part of the image on top and the coldest part on the bottom.
+
+// Each color is hardcoded
+
 import SwiftUI
 let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
 let Burgandy = Color(red: 0.39, green: 0.00, blue: 0.05)

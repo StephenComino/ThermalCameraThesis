@@ -13,18 +13,20 @@ class temp_timer {
     init (added_items: modularised_ui) {
         self.added_items = added_items
         
-        _ = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        // Check if Timer is already Scheduled
+        // If so, do not schedule another one
+        _ = Timer.scheduledTimer(timeInterval: 120.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
     @objc func fireTimer() {
        
-        fetchFilms() { data in
+        fetchTemp() { data in
             print(data)
             // [min, max, average]
         }
     }
     
-    func fetchFilms(completionHandler: @escaping ([Float]) -> Void) {
+    func fetchTemp(completionHandler: @escaping ([Float]) -> Void) {
         
         // For items in the range,, Get the pixel values
         // Average
@@ -66,10 +68,13 @@ class temp_timer {
           if let data = data,
              let thermal_data_results = try? JSONDecoder().decode(therm_data.self, from: data) {
             DispatchQueue.main.async {
-            
+                
+                // This is where the values for the list items are shown
                 items.min_temp = (thermal_data_results.data?[0])!
                 items.max_temp = (thermal_data_results.data?[1])!
                 items.avg_temp = (thermal_data_results.data?[2])!
+                items.distance = (thermal_data_results.data?[3])!
+                
                 self.added_items.tapped.toggle()
             }
             completionHandler(thermal_data_results.data ?? [0.0])

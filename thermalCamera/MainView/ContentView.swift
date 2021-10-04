@@ -8,28 +8,19 @@
 import SwiftUI
 
 public var choose = 0
-// A view that shows the data for one Restaurant.
+// A view that shows the data for data
 struct TemperatureRow: View {
     @Binding var updater : Bool
-    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
+    //let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
     var temp_item: Temperature_object
 
     var body: some View {
-        //Rectangle().frame(width:25, height: 25, alignment: .center).background(Color.black)
-        Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n - Heighest: \(temp_item.top_range)\n Avg :: \(temp_item.temp)")
+        Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n Heighest: \(temp_item.top_range)\n Avg: \(temp_item.temp)\n Dist: \(temp_item.distance)")
     }
 }
 
-struct DistanceRow: View {
-    @Binding var updater : Bool
-    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
-    var temp_item: distance_object
-
-    var body: some View {
-        //Rectangle().frame(width:25, height: 25, alignment: .center).background(Color.black)
-        Text("\(temp_item.name) Distance: \(temp_item.distance)\n")
-    }
-}
+// re added_items
+// These are settings for the main view and for holding lists of the data we need
 class modularised_ui: ObservableObject {
     @Published var temp_range : Bool = false
     @Published var pencil : Bool = false
@@ -39,7 +30,6 @@ class modularised_ui: ObservableObject {
     @Published var capture_image : Bool = false
     @Published var zoom : Bool = false
     @Published var buttons : [String: AnyView]  = [:]
-    //@ObservedObject private var therm_obj = Thermal_Objects()
     @Published var values:[String] = ["Autumn", "Bone", "Jet", "Winter", "Rainbow", "Ocean", "Summer", "Spring", "Cool", "HSV", "Pink", "Hot", "Parula", "Magma", "Inferno", "Plasma", "Viridis", "Cividis", "Twilight", "Twilight Shifted", "Turbo"]
     @Published var thermal_objects : [Thermal_Objects] = []
     @Published var distance_objects : [Distance_Object] = []
@@ -47,6 +37,7 @@ class modularised_ui: ObservableObject {
     @Published var current_view = -1
     @Published var current_idx = 0
     @Published var choose_view:Bool = false
+    @Published var zoom_factor:CGFloat = 1.0
     //@State var showTimeframeDropDown = true
 }
     
@@ -66,16 +57,9 @@ struct ContentView: View {
             
             GeometryReader { geometry in
                 ZStack() {
-                    if added_items.choose_view {
-                        imageVideo().frame(width: geometry.size.width, height:300, alignment: .top)
-                            .border(Color.red, width: 2)
-                            .environmentObject(self.added_items)                    } else {
-                        
-                
-                    distanceImageVideo().frame(width: geometry.size.width, height:300, alignment: .top)
-                    .border(Color.red, width: 2)
-                .environmentObject(self.added_items)
-                            }
+                    imageVideo().frame(width: geometry.size.width, height:300, alignment: .top)
+                        .border(Color.red, width: 2)
+                        .environmentObject(self.added_items)
                     if (added_items.toggle_pencil_usage) {
                         thermalPillView().environmentObject(self.added_items)
                             //.foregroundColor(Color.blue)
@@ -83,15 +67,10 @@ struct ContentView: View {
                     }
                 }
             }
-        //}.frame(height:300)
-        
-        //NavigationView {
         GeometryReader { geometry in
 
             VStack(alignment: .leading, spacing: 5) {
         // Middle part
-        //GeometryReader { geometry in
-            
                 //Form{
                 HStack(alignment: .top, spacing: 5) {
                 Button(action: {
@@ -100,8 +79,6 @@ struct ContentView: View {
                     })
                     {
                         Image(systemName: "camera")
-                        //.resizable()
-                        //.padding(10)
                             .frame(width: 50, height: 50)
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -117,7 +94,7 @@ struct ContentView: View {
                 .zIndex(1)
                 //.offset(y:-95)
                 Button(action: {
-                    print("Hello")
+                    added_items.zoom_factor = added_items.zoom_factor + 0.5
                     })
                     {
                         Image(systemName: "plus.magnifyingglass")
@@ -184,7 +161,7 @@ struct ContentView: View {
                 }).frame(alignment: .center)
                 .frame(width:50, height: 50)
                 Button(action: {
-                    print("Hello")
+                    self.added_items.zoom_factor = added_items.zoom_factor - 0.5
                     })
                     {
                         Image(systemName: "minus.magnifyingglass")
@@ -196,24 +173,6 @@ struct ContentView: View {
                         .foregroundColor(.white)
                 }.frame(width:50, height: 50)
                 .zIndex(1)
-                Button(action: {
-                    if (added_items.choose_view == true) {
-                        added_items.choose_view = false
-                    } else {
-                        added_items.choose_view = true
-                    }
-                    })
-                    {
-                        Image(systemName: "eye.fill")
-                        //.resizable()
-                        //.padding(10)
-                            .frame(width: 50, height: 50)
-                        .background(Color.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundColor(.white)
-                }.frame(width:50, height: 50)
-                .zIndex(1)
-               
             }//.offset(y:-90)
             .frame(width: geometry.size.width, height: 50, alignment:.center)
             //.frame(width: geometry.size.width, alignment:.center)//.frame(width: geometry.size.width, height:
@@ -229,7 +188,7 @@ struct ContentView: View {
                         Text("Temperature Readings").fontWeight(.heavy)
             HStack {
                 //Text("Temperature Readings").fontWeight(.heavy).offset(y:-100)
-                if added_items.choose_view {
+                //if added_items.choose_view {
                 List(added_items.thermal_objects) { key in
                     let idx = added_items.thermal_objects.firstIndex(where: { $0 === key })
                     Image.init(systemName: "minus.circle.fill").frame(width: 25, height: 25, alignment: .center)
@@ -239,7 +198,7 @@ struct ContentView: View {
                                 added_items.thermal_objects.remove(at: idx)
                             }
                         }
-                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp))
+                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp, distance: key.distance))
                         .background(added_items.thermal_objects[idx!].alert_max != "" && ((Int(added_items.thermal_objects[idx!].alert_max)! < Int(added_items.thermal_objects[idx!].max_temp)) || (Int(added_items.thermal_objects[idx!].alert_min)! > Int(added_items.thermal_objects[idx!].min_temp))) ? Color.red : Color.clear)
                     
                     Spacer()
@@ -259,38 +218,6 @@ struct ContentView: View {
                                 setAlertView().environmentObject(self.added_items)
                         
                     }).frame(alignment: .center)
-                }
-                } else {
-                    List(added_items.distance_objects) { key in
-                        let idx = added_items.distance_objects.firstIndex(where: { $0 === key })
-                        Image.init(systemName: "minus.circle.fill").frame(width: 25, height: 25, alignment: .center)
-                            .background(Color.clear)
-                            .foregroundColor(Color.red).onTapGesture {
-                                if let idx = added_items.distance_objects.firstIndex(where: { $0 === key }) {
-                                    added_items.distance_objects.remove(at: idx)
-                                }
-                            }
-                        DistanceRow(updater: self.$updater, temp_item: distance_object(name: key.name, distance: key.distance))
-                        
-                        Spacer()
-                        Button(action: {}) {
-                            Text("Alerts").foregroundColor(.black).font(.system(size: 11.0))
-                        }.frame(width: 35, height: 35, alignment: .center)
-                        .background(Color.red)
-                        .clipShape(Circle())
-                        .onTapGesture {
-                            self.showing_action_sheet.toggle()
-                            let idx = added_items.distance_objects.firstIndex(where: { $0 === key })
-                            self.added_items.current_idx = idx!
-                        }
-                        .sheet(isPresented: self.$showing_action_sheet,
-                                onDismiss: {self.showing_action_sheet = false },
-                                content: {
-                                    setAlertView().environmentObject(self.added_items)
-                            
-                        }).frame(alignment: .center)
-                }
-                    
                 }
                 }//.frame(width: geometry.size.width, height: 150, alignment: .topLeading)
             
