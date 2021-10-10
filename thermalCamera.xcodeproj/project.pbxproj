@@ -21,7 +21,6 @@
 		D08C05D12669FE5800D8FB34 /* thermalCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05D02669FE5800D8FB34 /* thermalCameraUITests.swift */; };
 		D08C05E7266A0D8400D8FB34 /* cameraInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C05E6266A0D8400D8FB34 /* cameraInterface.swift */; };
 		D0AA86BD267D6ED200E01E59 /* timerviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA86BC267D6ED200E01E59 /* timerviewmodel.swift */; };
-		D0AAAB31267176320030DE18 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB30267176320030DE18 /* SwiftUIView.swift */; };
 		D0AAAB332675BD6C0030DE18 /* ThermoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB322675BD6C0030DE18 /* ThermoView.swift */; };
 		D0AAAB362676EAE10030DE18 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB352676EAE10030DE18 /* OpenCVWrapper.mm */; };
 		D0AAAB3A2677043F0030DE18 /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AAAB392677043E0030DE18 /* MJPEGStreamLib.swift */; };
@@ -73,7 +72,6 @@
 		D08C05D22669FE5800D8FB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D08C05E6266A0D8400D8FB34 /* cameraInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraInterface.swift; sourceTree = "<group>"; };
 		D0AA86BC267D6ED200E01E59 /* timerviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerviewmodel.swift; sourceTree = "<group>"; };
-		D0AAAB30267176320030DE18 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		D0AAAB322675BD6C0030DE18 /* ThermoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermoView.swift; sourceTree = "<group>"; };
 		D0AAAB342676EAE00030DE18 /* thermalCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "thermalCamera-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0AAAB352676EAE10030DE18 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				D08C05B72669FE5700D8FB34 /* Assets.xcassets */,
 				D08C05BC2669FE5700D8FB34 /* Info.plist */,
 				D08C05B92669FE5700D8FB34 /* Preview Content */,
-				D0AAAB30267176320030DE18 /* SwiftUIView.swift */,
 				D08C05B32669FE5400D8FB34 /* thermalCameraApp.swift */,
 				D0AAAB322675BD6C0030DE18 /* ThermoView.swift */,
 			);
@@ -477,7 +474,6 @@
 				D0AA86BD267D6ED200E01E59 /* timerviewmodel.swift in Sources */,
 				D03B3317269BC62300C21EE7 /* setAlertView.swift in Sources */,
 				D0AAAB3A2677043F0030DE18 /* MJPEGStreamLib.swift in Sources */,
-				D0AAAB31267176320030DE18 /* SwiftUIView.swift in Sources */,
 				D08C05E7266A0D8400D8FB34 /* cameraInterface.swift in Sources */,
 				D03B3322269CEE3600C21EE7 /* thermalPillView.swift in Sources */,
 			);

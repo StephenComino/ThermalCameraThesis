@@ -3,7 +3,7 @@
 import SwiftUI
 
 var points = [CGPoint]()
-var num = 0
+var num = 120
 var index_item = 0
 var last_pixel:CGPoint? = nil
 public var color_scheme = -1
@@ -142,15 +142,15 @@ class VideoViewController: UIViewController {
         // Check if there is a subView and if there is, Remove it then add the new one
         // before we remove the old subview we should think of saving it
         stream?.scale(data: added_items.zoom_factor)
-        if (num >= 1) {
-            removeSubView()
-        }
+        //if (num >= 1) {
+        //}
+        print(num)
         circle_path.remove_list()
         let touch = touches.first!
         _ = touch.location(in: self.view)
         
         circle_path = CircleView(frame: CGRect(x:0, y:0, width:375, height:299))
-        circle_path.tag = 99
+        circle_path.tag = num
         if ((self.added_items.toggle_pencil_usage)) {
             for touch in touches {
 
@@ -177,8 +177,10 @@ class VideoViewController: UIViewController {
         }
     }
     
+    // Allow only one drawing on the screen at one time
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //print("ended")
+        
+        removeSubView()
         if (points.count > 0) {
             circle_path.add_point(point: CGPoint(x: points[0].x, y: points[0].y))
             circle_path.setNeedsDisplay()
@@ -190,14 +192,15 @@ class VideoViewController: UIViewController {
             added_items.thermal_objects.append(obj)
             index_item += 1
         }
+        print("ended " + String(num))
     }
     
     func removeSubView(){
         //print("Start remove subview")
         stream?.scale(data: added_items.zoom_factor)
-        if let viewWithTag = self.view.viewWithTag(99) {
+        if let viewWithTag = self.view.viewWithTag(num-1) {
             viewWithTag.removeFromSuperview()
-            num -= 1
+            //num -= 1
         }else{
             print("No!")
         }

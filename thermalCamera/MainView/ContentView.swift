@@ -227,7 +227,7 @@ struct ContentView: View {
             
                     }//.frame(width: geometry.size.width, height: 200, alignment: .top)
                 }.frame(width: geometry.size.width, height: 220, alignment: .bottom)
-                //.offset(y:20)//.frame(width: geometry.size.width, height: 200, alignment: .top)
+                
         }
         }
         }
