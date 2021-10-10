@@ -51,10 +51,7 @@ using namespace cv;
     //cout << "-> grayFrom ->";
     Mat result;
     Mat img_color;
-    // Apply the colormap:
-    // Equalise the histogram!
-    //cv::equalizeHist(source, source);
-    //cv::resize(source, source, cv::Size(source.cols/2, source.rows/2), cv::INTER_LINEAR);
+
     switch (display_style) {
         case -1:
             //cv::detailEnhance(source, source, 10.0, 0.15);

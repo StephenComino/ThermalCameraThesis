@@ -9,9 +9,8 @@ import SwiftUI
 
 public var choose = 0
 // A view that shows the data for data
-struct TemperatureRow: View {
+struct tempDistanceRow: View {
     @Binding var updater : Bool
-    //let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
     var temp_item: Temperature_object
 
     var body: some View {
@@ -198,7 +197,7 @@ struct ContentView: View {
                                 added_items.thermal_objects.remove(at: idx)
                             }
                         }
-                    TemperatureRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp, distance: key.distance))
+                    tempDistanceRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp, distance: key.distance))
                         .background(added_items.thermal_objects[idx!].alert_max != "" && ((Int(added_items.thermal_objects[idx!].alert_max)! < Int(added_items.thermal_objects[idx!].max_temp)) || (Int(added_items.thermal_objects[idx!].alert_min)! > Int(added_items.thermal_objects[idx!].min_temp))) ? Color.red : Color.clear)
                     
                     Spacer()

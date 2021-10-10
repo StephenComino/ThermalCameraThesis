@@ -11,7 +11,7 @@ struct DropDownButton: View {
     @EnvironmentObject var added_items : modularised_ui
     @Environment(\.presentationMode) var presentationMode
 
-    //let action : (String?) -> Void
+
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,8 +30,7 @@ struct DropDownButton: View {
                 }.frame(width: geometry.size.width, height: 30, alignment: .center)
                 .onTapGesture {
                     
-                    print(key)
-                    print(index)
+
                     self.added_items.current_view = index
                     color_scheme = index
                     presentationMode.wrappedValue.dismiss()
@@ -40,7 +39,7 @@ struct DropDownButton: View {
             }
         }
         //.offset(y:-150)
-        .frame(height: 300)
+        .frame(height: 600)
     }
     }
 }

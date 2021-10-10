@@ -36,13 +36,13 @@ class VideoViewController: UIViewController {
     var added_items : modularised_ui = modularised_ui()
     var stream: MJPEGStreamLib? = nil
     var imageView: UIImageView? = nil
+    private var notificationCenter: NotificationCenter
     
-    init(added_items: modularised_ui) {
+    init(added_items: modularised_ui, notificationCenter: NotificationCenter = .default) {
         self.added_items = added_items
-        
+        self.notificationCenter = notificationCenter
         //super.init(coder: NSCoder)
         super.init(nibName: nil, bundle: nil)
-
        }
        
     required init?(coder: NSCoder) {
@@ -94,10 +94,23 @@ class VideoViewController: UIViewController {
         {
             self.view.addSubview(imageView!)
         }
+        
+        notificationCenter.addObserver(self,
+                    selector: #selector(updateZoom),
+                    name: nil,
+                    object: nil
+                )
     }
     
+    // Function callback for the zoom
+    @objc
+    func updateZoom()
+    {
+        stream?.scale(data: added_items.zoom_factor)
+    }
    
     func showDrawing(list: [CGPoint]) {
+        stream?.scale(data: added_items.zoom_factor)
         for p in list {
             circle_path.add_point(point: p)
         }
@@ -105,8 +118,8 @@ class VideoViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        let transform = CGAffineTransform(scaleX: added_items.zoom_factor, y: added_items.zoom_factor);
-        self.view.transform = transform
+       
+        stream?.scale(data: added_items.zoom_factor)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
