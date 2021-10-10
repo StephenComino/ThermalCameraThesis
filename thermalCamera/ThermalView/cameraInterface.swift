@@ -253,8 +253,8 @@ class CircleView: UIView {
     
     override func draw(_ rect: CGRect) {
         // Get the Graphics Context
-        print("Drawing")
-        print(points)
+        //print("Drawing")
+        //print(points)
         if let context = UIGraphicsGetCurrentContext() {
             
             if (last_index == 0 && points.count > 0) {

@@ -197,8 +197,13 @@ struct ContentView: View {
                                 added_items.thermal_objects.remove(at: idx)
                             }
                         }
+                    
                     tempDistanceRow(updater: self.$updater, temp_item: Temperature_object(name: key.name, temp: key.avg_temp, top_range: key.max_temp, low_range: key.min_temp, distance: key.distance))
-                        .background(added_items.thermal_objects[idx!].alert_max != "" && ((Int(added_items.thermal_objects[idx!].alert_max)! < Int(added_items.thermal_objects[idx!].max_temp)) || (Int(added_items.thermal_objects[idx!].alert_min)! > Int(added_items.thermal_objects[idx!].min_temp))) ? Color.red : Color.clear)
+                        .background(
+                            (added_items.thermal_objects[idx!].alert_max != "") && ((Int(added_items.thermal_objects[idx!].alert_max)! < Int(added_items.thermal_objects[idx!].max_temp))
+                                ||
+                                (added_items.thermal_objects[idx!].alert_min != "") &&
+                                (Int(added_items.thermal_objects[idx!].alert_min)! > Int(added_items.thermal_objects[idx!].min_temp))) ? Color.red : Color.clear)
                     
                     Spacer()
                     Button(action: {}) {
