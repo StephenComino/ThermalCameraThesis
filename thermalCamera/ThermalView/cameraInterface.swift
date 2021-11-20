@@ -66,7 +66,7 @@ class VideoViewController: UIViewController {
         // Set the ImageView to the stream object
         stream = MJPEGStreamLib(imageView: imageView!)
         var url: URL?
-        url = URL(string: "http://192.168.0.187/video_stream?type=0")
+        url = URL(string: "http://192.168.0.30/video_stream?type=0")
         print(self.added_items.choose_view)
         stream!.contentURL = url
         stream!.play() // Play the stream

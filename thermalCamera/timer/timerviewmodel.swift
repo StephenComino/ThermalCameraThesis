@@ -40,7 +40,7 @@ class temp_timer {
             }
 
         
-            var url = URLComponents(string: "http://192.168.0.187/tempAt")!
+            var url = URLComponents(string: "http://192.168.0.30/tempAt")!
 
             var queryItems = [URLQueryItem]()
             for x_val in x {

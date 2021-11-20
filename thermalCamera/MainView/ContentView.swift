@@ -14,7 +14,11 @@ struct tempDistanceRow: View {
     var temp_item: Temperature_object
 
     var body: some View {
-        Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n Heighest: \(temp_item.top_range)\n Avg: \(temp_item.temp)\n Dist: \(temp_item.distance)")
+        if(temp_item.low_range != 0 && temp_item.top_range != 0) {
+        Text("\(temp_item.name) Lowest: \(temp_item.low_range)\n Heighest: \(temp_item.top_range)\n Avg: \(temp_item.temp)\n Dist: \(temp_item.distance, specifier: "%.2f")m")
+        } else {
+            Text("\(temp_item.name) Lowest: N/A\n Heighest: N/A\n Avg: N/A\n Dist: \(temp_item.distance, specifier: "%.2f")m")
+        }
     }
 }
 
@@ -124,7 +128,7 @@ struct ContentView: View {
                 .frame(width:50, height: 50)
                 Button(action: {
                     // Do Reset
-                    let url = URL(string: "http://192.168.0.187/reset")!
+                    let url = URL(string: "http://192.168.0.30/reset")!
                     let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                         guard let data = data else { return }
                         print(String(data: data, encoding: .utf8)!)
